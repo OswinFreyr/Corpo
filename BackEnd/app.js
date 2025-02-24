@@ -2,6 +2,11 @@ const express = require("express");
 const cors = require("cors");
 const { db } = require("./models/db");
 
+const answerLRouter = require("./routes/answerLRoute");
+const answerRRouter = require("./routes/answerRRoute");
+const questionRouter = require("./routes/questionRoute");
+const reasonRouter = require("./routes/reasonRoute");
+const roleRouter = require("./routes/roleRoute");
 const userRouter = require("./routes/userRoute");
 
 
@@ -15,6 +20,11 @@ app.use(cors({
 
 app.use(express.json({limit: "2mb"}));
 
+app.use("/api/v1/answerLs",answerLRouter);
+app.use("/api/v1/answerRs",answerRRouter);
+app.use("/api/v1/questions",questionRouter);
+app.use("/api/v1/reasons",reasonRouter);
+app.use("/api/v1/roles",roleRouter);
 app.use("/api/v1/users",userRouter);
 
 
