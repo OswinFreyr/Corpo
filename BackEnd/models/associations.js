@@ -1,5 +1,4 @@
-const { AnswerL } = require("./answerLModel");
-const { AnswerR } = require("./answerRModel");
+const { Answer } = require("./answerModel");
 const { Bonus } = require("./bonusModel");
 const { Question } = require("./questionModel");
 const { Reason } = require("./reasonModel");
@@ -10,20 +9,18 @@ const { User } = require("./userModel");
 Reason.hasMany(User);
 User.belongsTo(Reason);
 
-Question.hasMany(AnswerL);
-AnswerL.belongsTo(Question);
-
-Question.hasMany(AnswerR);
-AnswerR.belongsTo(Question);
+Question.hasMany(Answer);
+Answer.belongsTo(Question);
 
 Role.hasMany(Question);
 Question.belongsTo(Role);
 
-Bonus.hasMany(AnswerL);
-AnswerL.belongsTo(Bonus);
+Reason.hasMany(Answer);
+Answer.belongsTo(Reason);
 
-Bonus.hasMany(AnswerR);
-AnswerR.belongsTo(Bonus);
+//Pas utilisé
+Bonus.hasMany(Answer);
+Answer.belongsTo(Bonus);
 
 
-module.exports = { User, Question, AnswerL, AnswerR, Role, Reason, Bonus };
+module.exports = { User, Question, Answer, Role, Reason, Bonus };

@@ -85,4 +85,24 @@ async function deleteRole(roleId) {
     }
 }
 
-module.exports = { createRole, getRoleById, getAllRoles, getLimitedRoles, updateRole, deleteRole }
+async function createAllRoles(roles, ) {
+    try {
+
+        const tabRoles = [];
+        roles.forEach(async roleData => {
+            tabRoles.push({
+                role: roleData.role,
+                link: roleData.link
+            })
+        });
+
+        roles = await Role.bulkCreate(tabRoles, {ignoreDuplicates: true })
+        
+        console.log('Tous les roles ont été créés avec succès.');
+
+    } catch (err) {
+        console.error('Erreur lors de la création des roles :', err);
+    }
+}
+
+module.exports = { createRole, getRoleById, getAllRoles, getLimitedRoles, updateRole, deleteRole, createAllRoles }

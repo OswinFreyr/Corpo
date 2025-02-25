@@ -1,8 +1,8 @@
 const { db } = require("./db");
 const { DataTypes } = require("sequelize")
 
-const AnswerL = db.define("answersL", {
-    answerL: {
+const Answer = db.define("answers", {
+    answer: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -14,7 +14,7 @@ const AnswerL = db.define("answersL", {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    productivty: {
+    productivity: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
@@ -26,4 +26,4 @@ const AnswerL = db.define("answersL", {
 
 });
 
-module.exports = { AnswerL };
+module.exports = { Answer };

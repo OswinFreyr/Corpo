@@ -1,4 +1,4 @@
-const { Question, Role, AnswerL, AnswerR, } = require("../models/associations");
+const { Question, Role, Answer, } = require("../models/associations");
 
 
 async function createQuestion(question) {
@@ -9,8 +9,7 @@ async function getQuestionById(id) {
     const question = await Question.findByPk(id, {
         include: [
             {model: Role},
-            {model: AnswerL},
-            {model: AnswerR},
+            {model: Answer},
         ]
     });
     if (question) {
@@ -30,8 +29,7 @@ async function getAllQuestions(criterias = {}) {
         where,
         include: [
             {model: Role},
-            {model: AnswerL},
-            {model: AnswerR},
+            {model: Answer},
         ]
     });
     if(questions) {
@@ -58,8 +56,7 @@ async function getLimitedQuestions(criterias = {}, pageId, itemsPerPage) {
         where,
         include: [
             {model: Role},
-            {model: AnswerL},
-            {model: AnswerR},
+            {model: Answer},
         ],
         limit: itemsPerPage,
         offset,
@@ -91,4 +88,25 @@ async function deleteQuestion(questionId) {
     }
 }
 
-module.exports = { createQuestion, getQuestionById, getAllQuestions, getLimitedQuestions, updateQuestion, deleteQuestion }
+async function createAllQuestions(questions, ) {
+    try {
+
+        const tabQuestions = [];
+        questions.forEach(async questionData => {
+
+            tabQuestions.push({
+                question: questionData.question,
+                roleId: questionData.roleId
+            })
+        });
+
+        questions = await Question.bulkCreate(tabQuestions, {ignoreDuplicates: true })
+        
+        console.log('Tous les questions ont été créés avec succès.');
+
+    } catch (err) {
+        console.error('Erreur lors de la création des questions :', err);
+    }
+}
+
+module.exports = { createQuestion, getQuestionById, getAllQuestions, getLimitedQuestions, updateQuestion, deleteQuestion, createAllQuestions }

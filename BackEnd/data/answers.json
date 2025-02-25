@@ -1,0 +1,22 @@
+[
+  { "answer": "A", "wellbeing": 5, "treasury": 10, "productivity": 8, "environment": 7, "reasonId": 1, "questionId": 1 },
+  { "answer": "B", "wellbeing": 6, "treasury": 12, "productivity": 7, "environment": 6, "reasonId": 2, "questionId": 2 },
+  { "answer": "C", "wellbeing": 4, "treasury": 8, "productivity": 9, "environment": 5, "reasonId": 3, "questionId": 3 },
+  { "answer": "D", "wellbeing": 7, "treasury": 11, "productivity": 6, "environment": 8, "reasonId": 4, "questionId": 4 },
+  { "answer": "E", "wellbeing": 5, "treasury": 9, "productivity": 8, "environment": 6, "reasonId": 5, "questionId": 5 },
+  { "answer": "F", "wellbeing": 6, "treasury": 14, "productivity": 5, "environment": 7, "reasonId": 6, "questionId": 6 },
+  { "answer": "G", "wellbeing": 3, "treasury": 7, "productivity": 10, "environment": 4, "reasonId": 7, "questionId": 7 },
+  { "answer": "H", "wellbeing": 8, "treasury": 13, "productivity": 6, "environment": 9, "reasonId": 8, "questionId": 8 },
+  { "answer": "I", "wellbeing": 5, "treasury": 10, "productivity": 7, "environment": 6, "reasonId": 9, "questionId": 9 },
+  { "answer": "J", "wellbeing": 6, "treasury": 12, "productivity": 8, "environment": 7, "reasonId": 10, "questionId": 10 },
+  { "answer": "K", "wellbeing": 4, "treasury": 9, "productivity": 6, "environment": 5, "reasonId": 1, "questionId": 1 },
+  { "answer": "L", "wellbeing": 7, "treasury": 11, "productivity": 7, "environment": 8, "reasonId": 2, "questionId": 2 },
+  { "answer": "M", "wellbeing": 5, "treasury": 8, "productivity": 9, "environment": 6, "reasonId": 3, "questionId": 3 },
+  { "answer": "N", "wellbeing": 6, "treasury": 10, "productivity": 5, "environment": 7, "reasonId": 4, "questionId": 4 },
+  { "answer": "O", "wellbeing": 3, "treasury": 12, "productivity": 8, "environment": 4, "reasonId": 5, "questionId": 5 },
+  { "answer": "P", "wellbeing": 8, "treasury": 7, "productivity": 6, "environment": 9, "reasonId": 6, "questionId": 6 },
+  { "answer": "Q", "wellbeing": 4, "treasury": 9, "productivity": 10, "environment": 5, "reasonId": 7, "questionId": 7 },
+  { "answer": "R", "wellbeing": 7, "treasury": 13, "productivity": 7, "environment": 8, "reasonId": 8, "questionId": 8 },
+  { "answer": "S", "wellbeing": 5, "treasury": 10, "productivity": 9, "environment": 6, "reasonId": 9, "questionId": 9 },
+  { "answer": "T", "wellbeing": 6, "treasury": 12, "productivity": 8, "environment": 7, "reasonId": 10, "questionId": 10 }
+]

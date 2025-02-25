@@ -77,4 +77,25 @@ async function deleteUser(userId) {
     }
 }
 
-module.exports = { createUser, getAllUsers, getLimitedUsers, updateUser, deleteUser }
+async function createAllUsers(users, ) {
+    try {
+
+        const tabUsers = [];
+        users.forEach(async userData => {
+            tabUsers.push({
+                username: userData.username,
+                score: userData.score,
+                reasonId: userData.reasonId
+            })
+        });
+
+        users = await User.bulkCreate(tabUsers, {ignoreDuplicates: true })
+        
+        console.log('Tous les users ont été créés avec succès.');
+
+    } catch (err) {
+        console.error('Erreur lors de la création des users :', err);
+    }
+}
+
+module.exports = { createUser, getAllUsers, getLimitedUsers, updateUser, deleteUser, createAllUsers }

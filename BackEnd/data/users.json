@@ -1,0 +1,12 @@
+[
+    { "username": "user1", "score": 0, "reasonId": 1 },
+    { "username": "user2", "score": 0, "reasonId": 2 },
+    { "username": "user3", "score": 0, "reasonId": 3 },
+    { "username": "user4", "score": 0, "reasonId": 4 },
+    { "username": "user5", "score": 0, "reasonId": 5 },
+    { "username": "user6", "score": 0, "reasonId": 6 },
+    { "username": "user7", "score": 0, "reasonId": 7 },
+    { "username": "user8", "score": 0, "reasonId": 8 },
+    { "username": "user9", "score": 0, "reasonId": 9 },
+    { "username": "user10", "score": 0, "reasonId": 10 }
+  ]

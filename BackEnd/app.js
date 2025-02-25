@@ -2,8 +2,9 @@ const express = require("express");
 const cors = require("cors");
 const { db } = require("./models/db");
 
-const answerLRouter = require("./routes/answerLRoute");
-const answerRRouter = require("./routes/answerRRoute");
+const Init = require("./data/integrations")
+
+const answerRouter = require("./routes/answerRoute");
 const questionRouter = require("./routes/questionRoute");
 const reasonRouter = require("./routes/reasonRoute");
 const roleRouter = require("./routes/roleRoute");
@@ -20,8 +21,7 @@ app.use(cors({
 
 app.use(express.json({limit: "2mb"}));
 
-app.use("/api/v1/answerLs",answerLRouter);
-app.use("/api/v1/answerRs",answerRRouter);
+app.use("/api/v1/answers",answerRouter);
 app.use("/api/v1/questions",questionRouter);
 app.use("/api/v1/reasons",reasonRouter);
 app.use("/api/v1/roles",roleRouter);
@@ -30,7 +30,8 @@ app.use("/api/v1/users",userRouter);
 
 db.sync(/*{force : true}*/)
     .then(async () => {
-            app.listen(PORT, () => {
+        Init.runInit()
+        app.listen(PORT, () => {
             console.log(`http://localhost:${PORT}`);
         })
     });
