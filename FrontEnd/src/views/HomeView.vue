@@ -105,6 +105,8 @@
   display: flex;
   flex-direction: column; 
   gap: 10px;
+  /* background-color: #6578d6; */
+  padding: 15px;
 }
 
 .infos{
