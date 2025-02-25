@@ -2,6 +2,8 @@
     import "xp.css/dist/XP.css";    
     import PlayerStat from "./PlayerStat.vue"
 
+
+    //TODO utiliser fct api fetch players
     let players = [
         { pseudo: 'Player1', days: 3, reason:"N'a pas payé ses impots" },
         { pseudo: 'Player2', days: 2 ,reason:"N'a pas payé ses impots"},
@@ -9,6 +11,7 @@
         { pseudo: 'Player4', days: 4 ,reason:"N'a pas payé ses impots"},
         { pseudo: 'Player5', days: 5 ,reason:"N'a pas payé ses impots"}
     ]
+    //TODO classer les players par score
 </script>
 
 <template>

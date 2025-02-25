@@ -1,1 +1,6 @@
-// gere la logique principale du jeu
+
+
+export default function Corpo(player,score,reason){
+
+
+}

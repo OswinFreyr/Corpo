@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import "xp.css/dist/XP.css";
 
-     const props = defineProps<{
-        answer:string
-    }>();
+const props = defineProps<{
+  answer: { answer: string; productivity: number; wellbeing: number; treasury: number; environment: number };
+}>();
+
+const emit = defineEmits(['selectedAnswer']);
 </script>
 
 <template>
-
   <div class="window" style="width: 300px">
-
     <div class="title-bar">
       <div class="title-bar-text">Réponse choisie</div>
       <div class="title-bar-controls">
@@ -20,15 +20,10 @@ import "xp.css/dist/XP.css";
     </div>
 
     <div class="window-body">
-
-      <p> {{ answer }} </p>
-      <button>Répondre</button>
-
+      <p>{{ props.answer.answer }}</p>
+      <button @click="emit('selectedAnswer', props.answer)">Répondre</button>
     </div>
   </div>
-
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

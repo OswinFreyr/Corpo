@@ -6,7 +6,7 @@ const props = defineProps<{
   players: { pseudo: string; days: number; reason: string }[];
 }>();
 
-const selectedPlayer = ref(null);
+const selectedPlayer = ref();
 
 const handleClick = (player: { pseudo: string; days: number; reason: string }) => {
   selectedPlayer.value = player;

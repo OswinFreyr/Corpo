@@ -1,0 +1,49 @@
+[
+    { 
+      "question": "Bonjour je suis Laetitia la secretaire, souhaitez vous des explications sur comment gérer votre entreprise ?", 
+      "answers": [
+        {
+          "answer": "Oui"
+        },
+        {
+          "answer": "Non"
+        }
+      ]
+    },
+    { 
+      "question": "Pour sélectionner votre décision, bougez votre selecteur sur le choix que vous souhaitez. Avez vous compris ?",
+      "answers": [
+        {
+          "answer": "Oui"
+        },
+        {
+          "answer": "Non",
+          "wellbeing": -2
+        }
+      ]
+    },
+    { 
+      "question": "Chaque décision influe sur l'état de votre entreprise, par exemple souhaitez vous un café ?",
+      "answers": [
+        {
+          "answer": "Oui",
+          "productivity": 30
+        },
+        {
+          "answer": "Non",
+          "productivity": -20
+        }
+      ]
+    },
+    {
+      "question": "Voilà, vous avez tout en main, bonne chance !",
+      "answers":[
+        {
+          "answer": "Au travail !"
+        },
+        {
+          "answer": "C'est parti !"
+        }
+      ]
+    }
+  ]
