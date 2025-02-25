@@ -18,8 +18,9 @@
     days: 12,
     reason:"N'était pas à la hauteur"
   }
+  let noCount = 1;
   let currentScore = 0;
-  let questions = ref([]);
+  let questions = ref<{ question: string; answer: string; productivity: number; wellbeing: number; treasury: number; environment: number; reason: string }[]>([]);
   let productivity=ref(50);
   let wellbeing = ref(50);
   let environment = ref(50);
@@ -27,8 +28,12 @@
   let compteurQuestions = ref(0);
 
   onMounted(async () => {
-    questions.value = await askQuestions();
-    // console.log("Questions chargées :", questions.value);
+    if(tuto) {
+      const questionsData = await fetch("../../questionsTuto.json");
+      questions.value = await questionsData.json();
+    } else {
+      questions.value = await askQuestions();
+    }
 });
 
 
@@ -36,26 +41,57 @@
 const handleSelectedAnswer = (answer: { answer:string,productivity: number; wellbeing: number; treasury: number; environment: number ;reason:string}) => {
   console.log("Réponse sélectionnée :", answer);
 
-  // if (tuto){
-  //   if (compteurQuestions.value === 0 && answer.answer === "Non"){
-  //     // sortir
-  //   }
-  // }
-  
-  productivity.value += answer.productivity;
-  wellbeing.value += answer.wellbeing;
-  treasury.value += answer.treasury;
-  environment.value += answer.environment;
+  if (tuto){
+    if (compteurQuestions.value === 0){
+      if (answer.answer === "Non") {
+        tuto = false
+      }
+      else if (answer.answer === "Oui") {
+        compteurQuestions.value ++;
+      }
+    }
+    else if (compteurQuestions.value === 1){
+      if (answer.answer === "Non") {
+        wellbeing.value += answer.wellbeing * noCount
+        noCount++;
+        if(wellbeing.value <= 0) {
+          questions.value[1].question = "J'espère que vous avez compris au bout de la 8ème fois, passons à la suite.";
+          setTimeout(() => {
+            compteurQuestions.value ++;
+          }, 3000)
+        }
+      }
+      else if (answer.answer === "Oui") {
+        compteurQuestions.value ++;
+      }
+    }
+    else if (compteurQuestions.value === 2){
+      productivity.value += answer.productivity
+      compteurQuestions.value ++;
+    }
+    else if (compteurQuestions.value === 3){
+      productivity.value = 50;
+      wellbeing.value = 50;
+      compteurQuestions.value = 0;
+      tuto = false;
+    }
+  } else  {
+    productivity.value += answer.productivity;
+    wellbeing.value += answer.wellbeing;
+    treasury.value += answer.treasury;
+    environment.value += answer.environment;
+    
+    if (productivity.value <= 0 || wellbeing.value <= 0 || treasury.value <= 0 || environment.value <= 0 || productivity.value >= 100 || wellbeing.value >= 100 || treasury.value >= 100 || environment.value >= 100) {
+      playing = false;
+      currentPlayer.reason = answer.reason;
+      tuto=true;
+    }
+    else{
+      currentScore++;
+      compteurQuestions.value++;
+    }
+  }
 
-  if (productivity.value <= 0 || wellbeing.value <= 0 || treasury.value <= 0 || environment.value <= 0 || productivity.value >= 100 || wellbeing.value >= 100 || treasury.value >= 100 || environment.value >= 100) {
-    playing = false;
-    currentPlayer.reason = answer.reason;
-    tuto=true;
-  }
-  else{
-    currentScore++;
-    compteurQuestions.value++;
-  }
 };
 
   
