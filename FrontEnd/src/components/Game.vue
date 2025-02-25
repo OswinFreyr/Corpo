@@ -75,11 +75,24 @@ const handleSelectedAnswer = (answer: any) => {
 </template>
 
 <style scoped>
+
+.card{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .card-question {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
+}
+
+@keyframes floatAnimation {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
 }
 
 .question {
@@ -92,6 +105,8 @@ const handleSelectedAnswer = (answer: any) => {
   gap: 20px;
   position: relative;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+  
+  animation: floatAnimation 4s ease-in-out infinite;
 }
 
 .question::before {
@@ -126,7 +141,6 @@ const handleSelectedAnswer = (answer: any) => {
   font-weight: 700;
   font-size: medium;
 }
-
 
 img {
   width: 300px;

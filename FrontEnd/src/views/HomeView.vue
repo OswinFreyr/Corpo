@@ -50,51 +50,67 @@
 
 </script>
 
-<template>
+<template class="container">
+
+  <!-- Header de la page de jeu-->
   <div class="infos">
     <h2>{{ currentScore }} jours</h2>
     <h2>LOGO CORPO.</h2>
+    <div></div>
   </div>
 
+  <!-- page de jeu-->
   <div class="page">
+
+    <!-- jauges-->
     <div class="post-its">
+
       <div class="post-it-container">
         <img src="../assets/clippy.gif" alt="Clippy" class="clippy">
         <PostIt title="Économie" :description="getDescription(treasury, 'treasury')" :value="treasury" image="../assets/chat.png" />
       </div>
+
       <PostIt title="Bien-être" :description="getDescription(wellbeing, 'wellbeing')" :value="wellbeing" image="../assets/chat.png" />
       <PostIt title="Productivité" :description="getDescription(productivity, 'productivity')" :value="productivity" image="../assets/chat.png" />
       <PostIt title="RSE" :description="getDescription(environment, 'environment')" :value="environment" image="../assets/chat.png" />
     </div>
 
+    <!-- questions reponses -->
     <div>
       <Game :questions="questions" v-if="playing" :tuto="tuto" @selectedAnswer="handleSelectedAnswer" :compteurQuestions="compteurQuestions" />
       <ScoreScreen v-else :player="currentPlayer"></ScoreScreen>
     </div>
-
-    <ScoreBoard/>
+    
+    <!-- scoreboard -->
+    <div>
+      <ScoreBoard/>
+    </div>
   </div>
+
+
 </template>
 
 <style scoped>
+
 .page {
-  display: flex;
-  flex-direction: row;
-  flex-grow: 1; 
-  padding: 20px; 
-  gap: 20px; 
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr; 
+  gap: 50px;
+  padding: 20px;
+  align-items: start; 
 }
+
 
 .post-its {
   display: flex;
   flex-direction: column; 
-  justify-content: center;
   gap: 10px;
 }
 
 .infos{
   display: flex;
   justify-content: space-evenly;
+  margin-bottom: 20px;
 }
 
 .clippy {
@@ -109,4 +125,6 @@
 .post-it-container {
   position: relative; 
 }
+
+
 </style>

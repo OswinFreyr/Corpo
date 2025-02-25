@@ -14,20 +14,20 @@ import ProgressBar from "./ProgressBar.vue";
     <div class="postit">
 
         <div class="header">
-            <span class="plus">+</span>
+            <span class="plus"></span>
             <span class="close">×</span>
         </div>
 
         <div class="content">
             <img src="../assets/chat.png" alt="Card image" />
+
             <div class="text">
+
                 <p class="title">{{ title }}</p>
                 <p class="description">{{ description }}</p>
                 <ProgressBar
                     :value="value"
                     ></ProgressBar>
-
-
             </div>
         </div>
 
@@ -73,6 +73,9 @@ import ProgressBar from "./ProgressBar.vue";
 
     .text {
         flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
     .title {
