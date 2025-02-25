@@ -88,8 +88,6 @@ const handleSelectedAnswer = (answer: { answer:string,productivity: number; well
     <ScoreBoard/>
   </div>
 
-  <Pseudo/>  
-
 </template>
 
 <style scoped>

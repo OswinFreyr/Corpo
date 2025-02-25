@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { ref, onMounted, onUnmounted,computed } from 'vue';
+import ProgressBar from "./ProgressBar.vue";
     const props = defineProps<{
         title: string;
         description: string;
         image: string;
         value: number;
     }>();
+
 </script>
 
 <template>
@@ -20,7 +23,11 @@
             <div class="text">
                 <p class="title">{{ title }}</p>
                 <p class="description">{{ description }}</p>
-                <progress max="100" :value="value"></progress>
+                <ProgressBar
+                    :value="value"
+                    ></ProgressBar>
+
+
             </div>
         </div>
 
@@ -80,8 +87,4 @@
         margin: 5px 0;
     }
 
-    progress {
-        width: 100%;
-        margin-top: 10px;
-    }
 </style>
