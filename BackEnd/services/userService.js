@@ -17,6 +17,9 @@ async function getAllUsers(criterias = {}) {
         where,
         include: [
             {model: Reason},
+        ],
+        order: [
+            ["score", "DESC"]
         ]
     });
     if(users) {
