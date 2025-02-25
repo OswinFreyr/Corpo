@@ -36,11 +36,35 @@
 const handleSelectedAnswer = (answer: { answer:string,productivity: number; wellbeing: number; treasury: number; environment: number ;reason:string}) => {
   console.log("Réponse sélectionnée :", answer);
 
-  // if (tuto){
-  //   if (compteurQuestions.value === 0 && answer.answer === "Non"){
-  //     // sortir
-  //   }
-  // }
+  let noCount = 1;
+  while (tuto){
+    if (compteurQuestions.value === 0){
+      if (answer.answer === "Non") {
+        tuto = false
+      }
+      else if (answer.answer === "Oui") {
+        compteurQuestions.value ++;
+      }
+    }
+    else if (compteurQuestions.value === 1){
+      if (answer.answer === "Non") {
+        wellbeing.value += answer.wellbeing * noCount
+        noCount++;
+      }
+      else if (answer.answer === "Oui") {
+        compteurQuestions.value ++;
+      }
+    }
+    else if (compteurQuestions.value === 2){
+      productivity.value += answer.productivity
+      compteurQuestions.value ++;
+    }
+    else if (compteurQuestions.value === 3){
+      productivity.value = 50;
+      wellbeing.value = 50;
+      tuto = false;
+    }
+  }
   
   productivity.value += answer.productivity;
   wellbeing.value += answer.wellbeing;
