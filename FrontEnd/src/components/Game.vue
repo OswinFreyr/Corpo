@@ -24,6 +24,10 @@ onMounted(async () => {
 
 console.log("questions dans game : ", props.questions);
 
+let joystickInput = 1
+let joystickInput2 = 2
+
+
 const handleSelectedAnswer = (answer: any) => {
   emit("selectedAnswer", answer);
 };
@@ -45,33 +49,33 @@ const handleSelectedAnswer = (answer: any) => {
 
     </div>
   </div>
+  <div class="cards-answer">
+    <div class="card-answer-left" v-show="joystickInput === 1" :class="{'visible': joystickInput === 1}">
+    <Answer
+      v-if="tuto && questionsTuto.length > compteurQuestions && questionsTuto[compteurQuestions]?.answers?.length > 0"
+      :answer="questionsTuto[compteurQuestions].answers[0]"
+      @selectedAnswer="handleSelectedAnswer"
+    />
+    <Answer
+      v-else-if="props.questions.length > compteurQuestions && props.questions[compteurQuestions]?.answers?.length > 0"
+      :answer="props.questions[compteurQuestions].answers[0]"
+      @selectedAnswer="handleSelectedAnswer"
+    />
+    </div>
 
-  <div class="card-answer">
-  <Answer
-    v-if="tuto && questionsTuto.length > compteurQuestions && questionsTuto[compteurQuestions]?.answers?.length > 0"
-    :answer="questionsTuto[compteurQuestions].answers[0]"
-    @selectedAnswer="handleSelectedAnswer"
-  />
-  <Answer
-    v-else-if="props.questions.length > compteurQuestions && props.questions[compteurQuestions]?.answers?.length > 0"
-    :answer="props.questions[compteurQuestions].answers[0]"
-    @selectedAnswer="handleSelectedAnswer"
-  />
-</div>
-
-<div class="card-answer">
-  <Answer
-    v-if="tuto && questionsTuto.length > compteurQuestions && questionsTuto[compteurQuestions]?.answers?.length > 1"
-    :answer="questionsTuto[compteurQuestions].answers[1]"
-    @selectedAnswer="handleSelectedAnswer"
-  />
-  <Answer
-    v-else-if="props.questions.length > compteurQuestions && props.questions[compteurQuestions]?.answers?.length > 1"
-    :answer="props.questions[compteurQuestions].answers[1]"
-    @selectedAnswer="handleSelectedAnswer"
-  />
-</div>
-
+    <div class="card-answer-right" v-show="joystickInput2 === 2" :class="{'visible': joystickInput2 === 2}">
+      <Answer
+        v-if="tuto && questionsTuto.length > compteurQuestions && questionsTuto[compteurQuestions]?.answers?.length > 1"
+        :answer="questionsTuto[compteurQuestions].answers[1]"
+        @selectedAnswer="handleSelectedAnswer"
+      />
+      <Answer
+        v-else-if="props.questions.length > compteurQuestions && props.questions[compteurQuestions]?.answers?.length > 1"
+        :answer="props.questions[compteurQuestions].answers[1]"
+        @selectedAnswer="handleSelectedAnswer"
+      />
+    </div>
+  </div>
 </template>
 
 <style scoped>
@@ -86,6 +90,7 @@ const handleSelectedAnswer = (answer: any) => {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: absolute;
   gap: 20px;
 }
 
@@ -146,4 +151,32 @@ img {
   width: 300px;
   height: auto;
 }
+
+.cards-answer {
+  display: flex;
+  flex-direction: row;
+}
+
+.card-answer-left {
+  visibility: hidden;
+  position: relative;
+  top: 290px;
+}
+
+.card-answer-right {
+  visibility: hidden;
+  position: relative;
+  top: 290px;
+}
+
+.card-answer-left.visible {
+  visibility: visible;
+}
+
+.card-answer-right.visible {
+  visibility: visible;
+}
+
+
 </style>
+

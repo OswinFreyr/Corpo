@@ -26,7 +26,7 @@ console.log("stat", props.players)
     </li>
   </ul>
 
-  <Focus v-if="selectedPlayer" :player="selectedPlayer" />
+  <Focus v-if="selectedPlayer" :player="selectedPlayer" @close="selectedPlayer = false" />
   
 </template>
 
