@@ -63,6 +63,7 @@ watch(currentQuestion, (newQuestion) => {
   <div class="card-question">
     <div class="question">
       <div class="header-question">
+        <img src="/src/assets/mail.png" alt="">
         <p>Doléance</p>
         <p>x</p>
       </div>
@@ -335,5 +336,9 @@ img {
 .slide-in {
   animation: slideInFromBottom 0.5s ease-out forwards;
 } */
+
+.header-question>img{
+  width: 32px;
+}
 
 </style>
