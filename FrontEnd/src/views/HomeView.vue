@@ -146,7 +146,7 @@ const handleSelectedAnswer = (answer: { answer:string,productivity: number; well
 
       <PostIt title="Bien-être" :description="getDescription(wellbeing, 'wellbeing')" :value="wellbeing" image="../assets/chat.png" />
       <PostIt title="Productivité" :description="getDescription(productivity, 'productivity')" :value="productivity" image="../assets/chat.png" />
-      <PostIt title="RSE" :description="getDescription(environment, 'environment')" :value="environment" image="../assets/chat.png" />
+      <PostIt title="Environnement" :description="getDescription(environment, 'environment')" :value="environment" image="../assets/chat.png" />
     </div>
 
     <!-- questions reponses -->
