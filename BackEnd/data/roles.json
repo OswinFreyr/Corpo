@@ -1,0 +1,12 @@
+[
+    { "role": "Admin", "link": "https://lorem.picsum/200" },
+    { "role": "User", "link": "https://lorem.picsum/200" },
+    { "role": "Manager", "link": "https://lorem.picsum/200" },
+    { "role": "Editor", "link": "https://lorem.picsum/200" },
+    { "role": "Viewer", "link": "https://lorem.picsum/200" },
+    { "role": "Moderator", "link": "https://lorem.picsum/200" },
+    { "role": "Guest", "link": "https://lorem.picsum/200" },
+    { "role": "Support", "link": "https://lorem.picsum/200" },
+    { "role": "Developer", "link": "https://lorem.picsum/200" },
+    { "role": "Analyst", "link": "https://lorem.picsum/200" }
+  ]
