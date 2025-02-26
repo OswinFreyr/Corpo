@@ -107,7 +107,8 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
     if (productivity.value <= 0 || wellbeing.value <= 0 || treasury.value <= 0 || environment.value <= 0 || productivity.value >= 100 || wellbeing.value >= 100 || treasury.value >= 100 || environment.value >= 100) {
       currentUser.value.reason.reason = "Une fin";
       currentUser.value.score = currentScore.value;
-      compteurQuestions.value = 0
+      compteurQuestions.value = 0;
+      currentScore.value = 0;
       await updateUser(currentUser.value.id, {score: currentScore.value, reason:{reason:currentUser.value.reason.reason}})
       playing.value = 2;
       tuto = true;
@@ -151,12 +152,12 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
 
       <div class="post-it-container">
         <img src="../assets/clippy.gif" alt="Clippy" class="clippy">
-        <PostIt title="Économie" :description="getDescription(treasury, 'treasury')" :value="treasury" image="../assets/chat.png" />
+        <PostIt title="Économie" :description="getDescription(treasury, 'treasury')" :value="treasury" image="src/assets/treasury.png" />
       </div>
 
-      <PostIt title="Bien-être" :description="getDescription(wellbeing, 'wellbeing')" :value="wellbeing" image="../assets/chat.png" />
-      <PostIt title="Productivité" :description="getDescription(productivity, 'productivity')" :value="productivity" image="../assets/chat.png" />
-      <PostIt title="Environnement" :description="getDescription(environment, 'environment')" :value="environment" image="../assets/chat.png" />
+      <PostIt title="Bien-être" :description="getDescription(wellbeing, 'wellbeing')" :value="wellbeing" image="src/assets/wellbeing.png" />
+      <PostIt title="Productivité" :description="getDescription(productivity, 'productivity')" :value="productivity" image="src/assets/productivity.png" />
+      <PostIt title="Environnement" :description="getDescription(environment, 'environment')" :value="environment" image="src/assets/environment.png" />
     </div>
 
     <!-- questions reponses -->
