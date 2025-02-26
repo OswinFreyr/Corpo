@@ -24,7 +24,8 @@ async function getAllUsers(criterias = {}) {
         ],
         order: [
             ["score", "DESC"]
-        ]
+        ],
+        limit: 10,
     });
     if(users) {
         return users;

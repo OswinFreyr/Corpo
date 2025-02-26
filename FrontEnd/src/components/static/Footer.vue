@@ -22,11 +22,11 @@ onUnmounted(() => {
 
 <template>
 
-  <footer class="windows-xp-taskbar">
+  <footer class="windows-xp-taskbar" style="padding: 0; margin: 0;">
 
     <div class="start-button">
-      <div class="start-icon"> 
-        <img style="width: 16px; height: 16px; border-radius: 20px;" src="../../assets/logo-win-xp.png" alt="">
+      <div class="start-icon" style="padding: 0; margin: 0;"> 
+        <img style="width: 16px; height: 16px; padding: 0; margin: 0; border-radius: 20px;" src="../../assets/logo-win-xp.png" alt="">
       </div>
       <span>Démarrer</span>
     </div>

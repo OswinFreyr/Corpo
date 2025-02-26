@@ -36,16 +36,17 @@
   <div class="window-body">
     <div>
         <ul class="infos">
-            <li>{{ player.username }}</li>
+            <li>Bravo {{ player.username }} !</li>
             <li>Vous avez maintenu l'entreprise à flots durant {{ player.score }} jours</li>
             <li>Raison de votre flagrant échec : {{ player.reason.reason }}</li>
+            <li>(Rejouez à vos risques et périls !)</li>
         </ul>
     </div>
     <div class="buttons">
         <button @click="rejouer()">
             Rejouer
-        </button @click="newPlayer()">
-        <button>
+        </button>
+        <button @click="newPlayer()">
             Nouveau joueur
         </button>
     </div>
