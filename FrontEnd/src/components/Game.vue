@@ -7,6 +7,7 @@ const props = defineProps<{
   questions: { question: string; answers: any[];role: {link: string} }[];
   tuto: boolean;
   compteurQuestions:number;
+  joystcikInput:number;
 }>();
 
 const emit = defineEmits(["selectedAnswer"]);

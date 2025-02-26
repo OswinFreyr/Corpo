@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
   import "xp.css/dist/XP.css";
-  import { ref, onMounted, computed } from 'vue';
+  import { ref, onMounted, computed,watch } from 'vue';
 
   import getDescription from "../functions/utils/getDescription.js";
   import askQuestions from "../api/askQuestions.js";
@@ -20,13 +20,13 @@
     reason:"N'était pas à la hauteur"
   };
   let noCount = 1;
-  let currentScore = 0;
   let questions = ref<{ question: string; answer: string; productivity: number; wellbeing: number; treasury: number; environment: number; reason: string }[]>([]);
   let productivity=ref(50);
   let wellbeing = ref(50);
   let environment = ref(50);
   let treasury = ref(50);
   let compteurQuestions = ref(0);
+  let currentScore = ref(0);
 
   onMounted(async () => {
     if(tuto) {
@@ -37,6 +37,17 @@
     }
 });
 
+watch(currentScore, (newScore, oldScore) => {
+  if (newScore > oldScore) {
+    const scoreElement = document.querySelector('.score');
+    if (scoreElement) {
+      scoreElement.classList.add('increase');
+      setTimeout(() => {
+        scoreElement.classList.remove('increase');
+      }, 500);
+    }
+  }
+});
 
 
 const handleSelectedAnswer = (answer: { answer:string,productivity: number; wellbeing: number; treasury: number; environment: number ;reason:string}) => {
@@ -88,7 +99,7 @@ const handleSelectedAnswer = (answer: { answer:string,productivity: number; well
       tuto=true;
     }
     else{
-      currentScore++;
+      currentScore.value++;
       compteurQuestions.value++;
     }
   }
@@ -101,10 +112,17 @@ const handleSelectedAnswer = (answer: { answer:string,productivity: number; well
 
   <!-- Header de la page de jeu-->
   <div class="infos">
-    <h2>{{ currentScore }} jours</h2>
-    <h2>LOGO CORPO.</h2>
-    <div></div>
-  </div>
+    <div class="score-container">
+      <div class="score-value-container">
+        <h2 class="score">{{ currentScore }}</h2>
+      </div>
+      <h2 class="days-label">jours</h2>
+    </div>
+
+  <h2>LOGO CORPO.</h2>
+  <div></div>
+</div>
+
 
   <!-- page de jeu-->
   <div class="page">
@@ -175,5 +193,29 @@ const handleSelectedAnswer = (answer: { answer:string,productivity: number; well
   position: relative; 
 }
 
+.score-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+@keyframes scoreIncrease {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.score.increase {
+  animation: scoreIncrease 0.5s ease-out;
+}
 
 </style>
