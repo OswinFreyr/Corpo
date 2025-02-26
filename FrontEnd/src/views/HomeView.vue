@@ -125,7 +125,7 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
 <template class="container">
 
   <!-- Header de la page de jeu-->
-  <div class="infos">
+  <div class="infos" v-if="playing===1">
     <div class="score-container">
       <div class="score-value-container">
         <h2 class="score">{{ currentScore }}</h2>
@@ -138,7 +138,7 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
 </div>
 
 
-  <div v-if="playing==0">
+  <div v-if="playing==0" class="pseudo">
     <Pseudo :playing="playing" @updatePlaying="handleUpdatePlaying" :currentUser="currentUser" @updateCurrentUser="handleUpdateCurrentUser"/>
   </div>
 
@@ -235,6 +235,11 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
 
 .score.increase {
   animation: scoreIncrease 0.5s ease-out;
+}
+
+.pseudo{
+  display: flex;
+  justify-self: center;
 }
 
 </style>
