@@ -35,7 +35,11 @@ const handleSelectedAnswer = (answer: any) => {
 
 <template>
   <div class="card-question">
-    <div>
+    <div class="question">
+      <div class="header-question">
+        <p>Doléance</p>
+        <p>x</p>
+      </div>
       <p v-if="props.questions.length > 0">{{ props.questions[props.compteurQuestions].question }}</p>
       <p v-else>Chargement...</p>
     </div>
@@ -75,11 +79,72 @@ const handleSelectedAnswer = (answer: any) => {
 </template>
 
 <style scoped>
+
+.card{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .card-question {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: absolute;
+  gap: 20px;
+}
+
+@keyframes floatAnimation {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}
+
+.question {
+  background-color: #fffee0;
+  border: solid 1px #000;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+  
+  animation: floatAnimation 4s ease-in-out infinite;
+}
+
+.question::before {
+  content: "";
+  position: absolute;
+  bottom: -10px; 
+  left: 20px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #000000; 
+}
+
+.question::after {
+  content: "";
+  position: absolute;
+  bottom: -8px; 
+  left: 22px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #fffbe3; 
+}
+.header-question {
+  display: flex;
+  justify-content: space-between;
+}
+
+.question > p{
+  font-weight: 700;
+  font-size: medium;
 }
 
 img {
