@@ -1,8 +1,15 @@
 <script setup lang="ts">
 import "xp.css/dist/XP.css";
-import { ref } from "vue";
+import { defineProps, ref } from "vue";
 import verifPseudo from "../functions/utils/verifPseudo";
 import createUser from "../api/createUser";
+
+const props = defineProps<{
+  playing: number;
+  currentUser: {id:number; username:string; score:number; reason: {reason:string}},
+}>();
+
+const emit = defineEmits(['updatePlaying', 'updateCurrentUser']);
 
 const inputText = ref("");
 const keys = [
@@ -17,11 +24,16 @@ const deleteCharacter = () => {
   inputText.value = inputText.value.slice(0, -1);
 };
 
-const enterPressed = () => {
+let propsUser = props.currentUser;
+
+const enterPressed = async () => {
   if (verifPseudo(inputText.value)) {
     alert("Ce pseudo est interdit. Veuillez en choisir un autre.");
   } else {
-    createUser({username: inputText.value, score: 1})
+    const propsUserData = await createUser({username: inputText.value, score: 1, reason:{reason: "Pas de raison"}})
+    propsUser = await propsUserData.json()
+    emit('updatePlaying', 1);
+    emit('updateCurrentUser', propsUser);
   }
 };
 </script>

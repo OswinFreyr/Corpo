@@ -8,7 +8,7 @@ router.get("/limit", userController.getLimitedUsers);
 
 router.post("/", userController.createUser);
 
-router.patch("/update", userController.updateUser);
+router.post("/update", userController.updateUser);
 
 router.delete("/delete", userController.deleteUser)
 

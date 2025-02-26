@@ -12,11 +12,9 @@
             players.value.push({username: "Pas de joueur enregistré", score: 0, reason: {reason: "Pas de data"}})
         }
     });
-
 </script>
 
 <template>
-
     <div class="window" style="width: 300px">
         
         <div class="title-bar">
