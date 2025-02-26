@@ -25,6 +25,7 @@
   let environment = ref(50);
   let treasury = ref(50);
   let compteurQuestions = ref(0);
+  let currentScore = ref(0);
 
   // onMounted(() => {
   //   const intervalId = setInterval(() => {
@@ -123,10 +124,17 @@ const handleSelectedAnswer = (answer: { answer:string,productivity: number; well
 
   <!-- Header de la page de jeu-->
   <div class="infos">
-    <h2>{{ currentScore }} jours</h2>
-    <h2>LOGO CORPO.</h2>
-    <div></div>
-  </div>
+    <div class="score-container">
+      <div class="score-value-container">
+        <h2 class="score">{{ currentScore }}</h2>
+      </div>
+      <h2 class="days-label">jours</h2>
+    </div>
+
+  <h2>LOGO CORPO.</h2>
+  <div></div>
+</div>
+
 
   <div v-if="playing==0">
     <Pseudo :playing="playing" @updatePlaying="handleUpdatePlaying" :currentUser="currentUser" @updateCurrentUser="handleUpdateCurrentUser"/>
@@ -202,5 +210,29 @@ const handleSelectedAnswer = (answer: { answer:string,productivity: number; well
   position: relative; 
 }
 
+.score-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+@keyframes scoreIncrease {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.score.increase {
+  animation: scoreIncrease 0.5s ease-out;
+}
 
 </style>

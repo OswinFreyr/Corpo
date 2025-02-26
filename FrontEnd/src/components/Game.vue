@@ -30,6 +30,7 @@ const switchAnswer = () => {
 
 const handleSelectedAnswer = (answer: any) => {
   emit("selectedAnswer", answer);
+  joystickInput.value = 0;
 };
 </script>
 
