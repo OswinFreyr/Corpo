@@ -9,8 +9,8 @@ export default async function addUser(userData) {
         if (!response.ok) {
           throw new Error('Erreur lors de l\'ajout du joueur');
         }
-        resetForm();
-    } catch (error: any) {
+        return user
+    } catch (error) {
         throw new Error('Erreur : ' + error);
     }
 }

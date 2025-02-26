@@ -2,6 +2,7 @@
 import "xp.css/dist/XP.css";
 import { ref } from "vue";
 import verifPseudo from "../functions/utils/verifPseudo";
+import createUser from "../api/createUser";
 
 const inputText = ref("");
 const keys = [
@@ -20,7 +21,7 @@ const enterPressed = () => {
   if (verifPseudo(inputText.value)) {
     alert("Ce pseudo est interdit. Veuillez en choisir un autre.");
   } else {
-    alert(`Saisie validée : ${inputText.value}`);
+    createUser({username: inputText.value, score: 1})
   }
 };
 </script>

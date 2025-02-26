@@ -1,32 +1,28 @@
 <script setup lang="ts">
-import { defineProps, defineEmits } from "vue";
+import { defineProps, defineEmits, computed, onMounted, watch } from "vue";
 import Answer from "./Answer.vue";
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref } from 'vue';
 
 const props = defineProps<{
-  questions: { question: string; answers: any[];role: {link: string} }[];
+  questions: { question: string; answers: any[]; productivity: number; wellbeing: number; treasury: number; environment: number; role: { link: string } }[];
   tuto: boolean;
-  compteurQuestions:number;
+  compteurQuestions: number;
 }>();
 
 const emit = defineEmits(["selectedAnswer"]);
 
-const questionsTuto = ref<{ question: string; answers: any[]; role: { link: string } }[]>([]);
+const questionsTuto = ref<{ question: string; answers: any[]; productivity: number; wellbeing: number; treasury: number; environment: number; role: { link: string } }[]>([]);
 
-
-onMounted(async () => {
-    const response = await fetch("../../public/questionsTuto.json");
-    questionsTuto.value = await response.json();
-    console.log("questionsTuto chargées :", questionsTuto.value);
+const localQuestions = computed(() => {
+  return props.tuto ? questionsTuto.value : props.questions;
 });
 
+onMounted(async () => {
+  const response = await fetch("../../public/questionsTuto.json");
+  questionsTuto.value = await response.json();
+});
 
-
-console.log("questions dans game : ", props.questions);
-
-let joystickInput = 1
-let joystickInput2 = 2
-
+let joystickInput = ref(0);
 
 const handleSelectedAnswer = (answer: any) => {
   emit("selectedAnswer", answer);
@@ -40,38 +36,37 @@ const handleSelectedAnswer = (answer: any) => {
         <p>Doléance</p>
         <p>x</p>
       </div>
-      <p v-if="props.questions.length > 0">{{ props.questions[props.compteurQuestions].question }}</p>
+      <p v-if="localQuestions.length > 0">{{ localQuestions[props.compteurQuestions].question }}</p>
       <p v-else>Chargement...</p>
     </div>
     <div class="card">
-      <img src="https://picsum.photos/id/237/200/300" v-if="tuto" />
-      <img :src="props.questions[props.compteurQuestions].role.link" v-else />
-
+      <img src="https://picsum.photos/id/237/200/300" v-if="props.tuto" />
+      <img :src="localQuestions[props.compteurQuestions].role.link" v-else />
     </div>
   </div>
   <div class="cards-answer">
     <div class="card-answer-left" v-show="joystickInput === 1" :class="{'visible': joystickInput === 1}">
-    <Answer
-      v-if="tuto && questionsTuto.length > compteurQuestions && questionsTuto[compteurQuestions]?.answers?.length > 0"
-      :answer="questionsTuto[compteurQuestions].answers[0]"
-      @selectedAnswer="handleSelectedAnswer"
-    />
-    <Answer
-      v-else-if="props.questions.length > compteurQuestions && props.questions[compteurQuestions]?.answers?.length > 0"
-      :answer="props.questions[compteurQuestions].answers[0]"
-      @selectedAnswer="handleSelectedAnswer"
-    />
-    </div>
-
-    <div class="card-answer-right" v-show="joystickInput2 === 2" :class="{'visible': joystickInput2 === 2}">
       <Answer
-        v-if="tuto && questionsTuto.length > compteurQuestions && questionsTuto[compteurQuestions]?.answers?.length > 1"
-        :answer="questionsTuto[compteurQuestions].answers[1]"
+        v-if="props.tuto && questionsTuto.length > props.compteurQuestions && questionsTuto[props.compteurQuestions]?.answers?.length > 0"
+        :answer="questionsTuto[props.compteurQuestions].answers[0]"
         @selectedAnswer="handleSelectedAnswer"
       />
       <Answer
-        v-else-if="props.questions.length > compteurQuestions && props.questions[compteurQuestions]?.answers?.length > 1"
-        :answer="props.questions[compteurQuestions].answers[1]"
+        v-else-if="localQuestions.length > props.compteurQuestions && localQuestions[props.compteurQuestions]?.answers?.length > 0"
+        :answer="localQuestions[props.compteurQuestions].answers[0]"
+        @selectedAnswer="handleSelectedAnswer"
+      />
+    </div>
+
+    <div class="card-answer-right" v-show="joystickInput === 2" :class="{'visible': joystickInput === 2}">
+      <Answer
+        v-if="props.tuto && questionsTuto.length > props.compteurQuestions && questionsTuto[props.compteurQuestions]?.answers?.length > 1"
+        :answer="questionsTuto[props.compteurQuestions].answers[1]"
+        @selectedAnswer="handleSelectedAnswer"
+      />
+      <Answer
+        v-else-if="localQuestions.length > props.compteurQuestions && localQuestions[props.compteurQuestions]?.answers?.length > 1"
+        :answer="localQuestions[props.compteurQuestions].answers[1]"
         @selectedAnswer="handleSelectedAnswer"
       />
     </div>
@@ -79,8 +74,7 @@ const handleSelectedAnswer = (answer: any) => {
 </template>
 
 <style scoped>
-
-.card{
+.card {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -110,39 +104,40 @@ const handleSelectedAnswer = (answer: any) => {
   gap: 20px;
   position: relative;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
-  
+
   animation: floatAnimation 4s ease-in-out infinite;
 }
 
 .question::before {
   content: "";
   position: absolute;
-  bottom: -10px; 
+  bottom: -10px;
   left: 20px;
   width: 0;
   height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-top: 10px solid #000000; 
+  border-top: 10px solid #000000;
 }
 
 .question::after {
   content: "";
   position: absolute;
-  bottom: -8px; 
+  bottom: -8px;
   left: 22px;
   width: 0;
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-top: 8px solid #fffbe3; 
+  border-top: 8px solid #fffbe3;
 }
+
 .header-question {
   display: flex;
   justify-content: space-between;
 }
 
-.question > p{
+.question > p {
   font-weight: 700;
   font-size: medium;
 }
@@ -176,7 +171,4 @@ img {
 .card-answer-right.visible {
   visibility: visible;
 }
-
-
 </style>
-
