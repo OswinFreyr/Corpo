@@ -35,21 +35,49 @@ onUnmounted(() => {
     
     <div class="quick-launch">
       <div class="quick-icon">
-        <img style="width: 16px; height: 16px; margin-right: 5px;" src="../../assets/chat.png" alt="Corpo.exe">
+        <img style="width: 16px; height: 16px; margin-right: 5px;" src="../../assets/dsuiext_4100-7.png" alt="Dossiers">
       </div>
       <div class="quick-icon">
-        <img style="width: 16px; height: 16px; margin-right: 5px;" src="../../assets/chat.png" alt="Corpo.exe">
+        <img style="width: 16px; height: 16px; margin-right: 5px;" src="../../assets/ieframe_30785-6.png" alt="Internet Explorer">
+      </div>
+      <div class="quick-icon">
+        <img style="width: 16px; height: 16px; margin-right: 5px;" src="../../assets/localsec_5111-4.png" alt="Réseaux">
       </div>
     </div>
     
     <div class="taskbar-separator"></div>
     
     <div class="taskbar-apps">
-      <img style="width: 16px; height: 16px; margin-right: 5px;" src="../../assets/chat.png" alt="Corpo.exe">
+      <img style="width: 16px; height: 16px; margin-right: 5px;" src="../../assets/ieframe_30785-6.png" alt="Internet Explorer">
+      Internet Explorer
+    </div>
+
+    <div class="taskbar-separator"></div>
+    
+    <div class="taskbar-apps active-tab">
+      <img style="width: 16px; height: 16px; margin-right: 5px;" src="../../assets/corpo-logo.png" alt="Corpo.exe">
       Corpo.exe
     </div>
     
-    <div class="taskbar-clock">{{ currentTime }}</div>
+    <div class="taskbar-separator"></div>
+    
+    <div class="taskbar-apps">
+      <img style="width: 16px; height: 16px; margin-right: 5px;" src="../../assets/notepad_2-5.png" alt="Notepad">
+      Notepad
+    </div>
+
+    <div class="taskbar-separator"></div>
+    
+    <div class="taskbar-apps">
+      <img style="width: 16px; height: 16px; margin-right: 5px;" src="../../assets/mspaint_2-6.png" alt="Paint.net">
+      Paint.net
+    </div>
+    
+    
+    <div class="taskbar-clock">
+      <img style="width: 16px; height: 16px; margin-right: 5px;" src="../../assets/netcenter_18-2.png" alt="wifi-icon">
+      {{ currentTime }}
+    </div>
   </footer>
 
 </template>
@@ -128,6 +156,10 @@ onUnmounted(() => {
   box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.3) inset;
   display: flex;
   align-items: center;
+}
+
+.active-tab {
+  background: linear-gradient(to top, #929dab, #76adfa);
 }
 
 .taskbar-clock {

@@ -8,6 +8,8 @@ import ProgressBar from "./ProgressBar.vue";
         value: number;
     }>();
 
+    console.log(props.image) // console.log -> ../assets/chat.png
+
 </script>
 
 <template>
@@ -19,7 +21,7 @@ import ProgressBar from "./ProgressBar.vue";
         </div>
 
         <div class="content">
-            <img src="../assets/chat.png" alt="Card image" />
+            <img :src="image" alt="Card image" />
 
             <div class="text">
 
@@ -27,7 +29,7 @@ import ProgressBar from "./ProgressBar.vue";
                 <p class="description">{{ description }}</p>
                 <ProgressBar
                     :value="value"
-                    ></ProgressBar>
+                ></ProgressBar>
             </div>
         </div>
 

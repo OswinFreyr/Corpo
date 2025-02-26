@@ -180,12 +180,12 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
 
       <div class="post-it-container">
         <img src="../assets/clippy.gif" alt="Clippy" class="clippy">
-        <PostIt title="Économie" :description="getDescription(treasury, 'treasury')" :value="treasury" image="../assets/chat.png" />
+        <PostIt title="Économie" :description="getDescription(treasury, 'treasury')" :value="treasury" image="src/assets/treasury.png" />
       </div>
 
-      <PostIt title="Bien-être" :description="getDescription(wellbeing, 'wellbeing')" :value="wellbeing" image="../assets/chat.png" />
-      <PostIt title="Productivité" :description="getDescription(productivity, 'productivity')" :value="productivity" image="../assets/chat.png" />
-      <PostIt title="Environnement" :description="getDescription(environment, 'environment')" :value="environment" image="../assets/chat.png" />
+      <PostIt title="Bien-être" :description="getDescription(wellbeing, 'wellbeing')" :value="wellbeing" image="src/assets/wellbeing.png" />
+      <PostIt title="Productivité" :description="getDescription(productivity, 'productivity')" :value="productivity" image="src/assets/productivity.png" />
+      <PostIt title="Environnement" :description="getDescription(environment, 'environment')" :value="environment" image="src/assets/environment.png" />
     </div>
 
     <!-- questions reponses -->
