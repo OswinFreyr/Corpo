@@ -5,12 +5,12 @@ const currentTime = ref('');
 let intervalId: number | null = null;
 
 function updateTime() {
-  currentTime.value = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+  currentTime.value = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit'});
 }
 
 onMounted(() => {
   updateTime(); 
-  intervalId = setInterval(updateTime, 60000); 
+  intervalId = setInterval(updateTime, 1000); 
 });
 
 onUnmounted(() => {
@@ -143,4 +143,7 @@ onUnmounted(() => {
   padding: 0 8px;
   margin-left: auto;
 }
+
+
+
 </style>

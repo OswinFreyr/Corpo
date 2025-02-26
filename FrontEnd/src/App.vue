@@ -6,8 +6,12 @@
 
 <template>
   <div class="app-container">
-
+    
     <Header/>
+    <audio autoplay loop>
+      <source src="/public/euromir.mp3" type="audio/mpeg">
+      Votre navigateur ne supporte pas l'élément audio.
+    </audio>
 
     <RouterView />
 
@@ -17,8 +21,25 @@
 </template>
 
 <style>
+
   .app-container {
-    background-color: rgb(242, 249, 221);
-    padding: 50px;
+    padding-top: 50px;
   }
+
+  html, body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(242, 249, 221); 
+}
+
+#app {
+  all: unset; 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+
 </style>

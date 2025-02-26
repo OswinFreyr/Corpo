@@ -1,26 +1,33 @@
 <script setup lang="ts">
+import { ref, onMounted, onUnmounted,computed } from 'vue';
+import ProgressBar from "./ProgressBar.vue";
     const props = defineProps<{
         title: string;
         description: string;
         image: string;
         value: number;
     }>();
+
 </script>
 
 <template>
     <div class="postit">
 
         <div class="header">
-            <span class="plus">+</span>
+            <span class="plus"></span>
             <span class="close">×</span>
         </div>
 
         <div class="content">
             <img src="../assets/chat.png" alt="Card image" />
+
             <div class="text">
+
                 <p class="title">{{ title }}</p>
                 <p class="description">{{ description }}</p>
-                <progress max="100" :value="value"></progress>
+                <ProgressBar
+                    :value="value"
+                    ></ProgressBar>
             </div>
         </div>
 
@@ -66,6 +73,9 @@
 
     .text {
         flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
     .title {
@@ -80,8 +90,4 @@
         margin: 5px 0;
     }
 
-    progress {
-        width: 100%;
-        margin-top: 10px;
-    }
 </style>
