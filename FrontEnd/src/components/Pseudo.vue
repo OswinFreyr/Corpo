@@ -51,7 +51,7 @@ const enterPressed = async () => {
     </div>
 
     <div class="window-body">
-      <ul>
+      <ul class="liste">
         <li>Fichier</li>
         <li>Contact</li>
         <li>Actions</li>
@@ -115,4 +115,18 @@ ul {
     flex-direction: column;
     gap: 20px;
 }
+
+ul {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  justify-content: flex-start;
+}
+
+.liste {
+  padding-left: 0;
+}
+
 </style>
