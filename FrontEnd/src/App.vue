@@ -22,10 +22,6 @@
 
 <style>
 
-  .app-container {
-    padding-top: 50px;
-  }
-
   html, body {
   margin: 0;
   padding: 0;

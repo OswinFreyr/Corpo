@@ -133,9 +133,9 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
       <h2 class="days-label">jours</h2>
     </div>
 
-  <h2>LOGO CORPO.</h2>
-  <div></div>
-</div>
+    <h2>LOGO CORPO.</h2>
+    <div></div>
+  </div>
 
 
   <div v-if="playing==0" class="pseudo">
