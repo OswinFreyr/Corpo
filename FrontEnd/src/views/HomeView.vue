@@ -19,7 +19,7 @@
   let currentUser = ref<{id:number; username:string; score:number; reason: {reason:string}}>({id:0, username:"temp", score:1, reason: {reason: "Pas de raison"}})
   let noCount = 1;
   let currentScore = ref(0);
-  let questions = ref<{ question: string; answer: any[]; productivity: number; wellbeing: number; treasury: number; environment: number; role: { link: string } }[]>([]);
+  let questions = ref<{ question: string; answers: any[]; productivity: number; wellbeing: number; treasury: number; environment: number; role: { link: string } }[]>([]);
   let productivity=ref(50);
   let wellbeing = ref(50);
   let environment = ref(50);
