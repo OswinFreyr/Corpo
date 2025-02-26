@@ -2,7 +2,7 @@
 import "xp.css/dist/XP.css";
 
      const props = defineProps<{
-        player: { pseudo: string; days: number ; reason:string};
+        player: { username: string; score: number ; reason:{reason: string}};
     }>();
 </script>
 
@@ -11,7 +11,7 @@ import "xp.css/dist/XP.css";
   <div class="window" style="width: 300px">
 
     <div class="title-bar">
-      <div class="title-bar-text">{{ player.pseudo }}</div>
+      <div class="title-bar-text">{{ player.username }}</div>
       <div class="title-bar-controls">
         <button aria-label="Minimize"></button>
         <button aria-label="Maximize"></button>
@@ -21,8 +21,8 @@ import "xp.css/dist/XP.css";
 
     <div class="window-body">
 
-      <p>A tenu {{ player.days }} jours</p>
-      <p>{{ player.reason }}</p>
+      <p>A tenu {{ player.score }} jours</p>
+      <p>{{ player.reason.reason }}</p>
       <button>OK</button>
 
     </div>

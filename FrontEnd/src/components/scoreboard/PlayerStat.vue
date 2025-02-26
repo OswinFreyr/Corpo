@@ -3,14 +3,16 @@ import { defineProps, ref } from 'vue';
 import Focus from "./Focus.vue";
 
 const props = defineProps<{
-  players: { pseudo: string; days: number; reason: string }[];
+  players: { username: string; score: number; reason: {reason: string} }[];
 }>();
 
 const selectedPlayer = ref();
 
-const handleClick = (player: { pseudo: string; days: number; reason: string }) => {
+const handleClick = (player: { username: string; score: number; reason: {reason: string} }) => {
   selectedPlayer.value = player;
 };
+console.log("coucou")
+console.log("stat", props.players)
 </script>
 
 <template>
@@ -20,7 +22,7 @@ const handleClick = (player: { pseudo: string; days: number; reason: string }) =
       :key="index" 
       @click="handleClick(player)"
     >
-      {{ player.pseudo }} - {{ player.days }} jours
+      {{ player.username }} - {{ player.score }} jours
     </li>
   </ul>
 
