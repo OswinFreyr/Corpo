@@ -11,8 +11,6 @@ const selectedPlayer = ref();
 const handleClick = (player: { username: string; score: number; reason: {reason: string} }) => {
   selectedPlayer.value = player;
 };
-console.log("coucou")
-console.log("stat", props.players)
 </script>
 
 <template>

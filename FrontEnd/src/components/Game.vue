@@ -1,28 +1,26 @@
 <script setup lang="ts">
-import { defineProps, defineEmits } from "vue";
+import { defineProps, defineEmits, computed, onMounted, watch } from "vue";
 import Answer from "./Answer.vue";
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref } from 'vue';
 
 const props = defineProps<{
-  questions: { question: string; answers: any[];role: {link: string} }[];
+  questions: { question: string; answers: any[]; productivity: number; wellbeing: number; treasury: number; environment: number; role: { link: string } }[];
   tuto: boolean;
-  compteurQuestions:number;
+  compteurQuestions: number;
 }>();
 
 const emit = defineEmits(["selectedAnswer"]);
 
-const questionsTuto = ref<{ question: string; answers: any[]; role: { link: string } }[]>([]);
+const questionsTuto = ref<{ question: string; answers: any[]; productivity: number; wellbeing: number; treasury: number; environment: number; role: { link: string } }[]>([]);
 
-
-onMounted(async () => {
-    const response = await fetch("/questionsTuto.json");
-    questionsTuto.value = await response.json();
-    console.log("questionsTuto chargées :", questionsTuto.value);
+const localQuestions = computed(() => {
+  return props.tuto ? questionsTuto.value : props.questions;
 });
 
-
-
-console.log("questions dans game : ", props.questions);
+onMounted(async () => {
+  const response = await fetch("../../public/questionsTuto.json");
+  questionsTuto.value = await response.json();
+});
 
 let joystickInput = ref(0);
 
@@ -44,18 +42,16 @@ const handleSelectedAnswer = (answer: any) => {
         <span @click="switchAnswer"><></span>
         <p>x</p>
       </div>
-      <p v-if="props.questions.length > 0">{{ props.questions[props.compteurQuestions].question }}</p>
+      <p v-if="localQuestions.length > 0">{{ localQuestions[props.compteurQuestions].question }}</p>
       <p v-else>Chargement...</p>
     </div>
     <div class="card">
-      <img src="https://picsum.photos/id/237/200/300" v-if="tuto" />
-      <img :src="props.questions[props.compteurQuestions].role.link" v-else />
-
+      <img src="https://picsum.photos/id/237/200/300" v-if="props.tuto" />
+      <img :src="localQuestions[props.compteurQuestions].role.link" v-else />
     </div>
   </div>
 
   <div class="cards-answer">
-
     <div v-if="joystickInput !== 0"  class="answers-wrapper" :style="{ transform: `translateX(${joystickInput === 1 ? '0%' : '-100%'})` }">
       <div class="card-answer">
         <Answer
@@ -88,8 +84,7 @@ const handleSelectedAnswer = (answer: any) => {
 </template>
 
 <style scoped>
-
-.card{
+.card {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -119,39 +114,40 @@ const handleSelectedAnswer = (answer: any) => {
   gap: 20px;
   position: relative;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
-  
+
   animation: floatAnimation 4s ease-in-out infinite;
 }
 
 .question::before {
   content: "";
   position: absolute;
-  bottom: -10px; 
+  bottom: -10px;
   left: 20px;
   width: 0;
   height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-top: 10px solid #000000; 
+  border-top: 10px solid #000000;
 }
 
 .question::after {
   content: "";
   position: absolute;
-  bottom: -8px; 
+  bottom: -8px;
   left: 22px;
   width: 0;
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-top: 8px solid #fffbe3; 
+  border-top: 8px solid #fffbe3;
 }
+
 .header-question {
   display: flex;
   justify-content: space-between;
 }
 
-.question > p{
+.question > p {
   font-weight: 700;
   font-size: medium;
 }
@@ -272,7 +268,4 @@ img {
   color: #555;
   padding: 10px;
 }
-
-
 </style>
-
