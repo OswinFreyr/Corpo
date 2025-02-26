@@ -30,7 +30,7 @@ const enterPressed = async () => {
   if (verifPseudo(inputText.value)) {
     alert("Ce pseudo est interdit. Veuillez en choisir un autre.");
   } else {
-    const propsUserData = await createUser({username: inputText.value, score: 1, reason:{reason: "Pas de raison"}})
+    const propsUserData = await createUser({username: inputText.value, score: 1, reason:{reason: "Fin"}})
     propsUser = await propsUserData.json()
     emit('updatePlaying', 1);
     emit('updateCurrentUser', propsUser);

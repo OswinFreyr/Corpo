@@ -8,12 +8,12 @@
     const emit = defineEmits(['updateScorePlaying', 'updateScoreCurrentUser']);
 
     function rejouer() {
-        let propsUser = { id:props.player.id, username: props.player.username, score: 1, reason:{reason:"Pas de raison"}};
+        let propsUser = { id:props.player.id, username: props.player.username, score: 1, reason:{reason:"Fin"}};
         emit('updateScorePlaying', 1);
         emit('updateScoreCurrentUser', propsUser);
     }
     function newPlayer() {
-        let propsUser = { id:0, username: " ", score: 1, reason:{reason:"Pas de raison"}};
+        let propsUser = { id:0, username: " ", score: 1, reason:{reason:"Fin"}};
         emit('updateScorePlaying', 0);
         emit('updateScoreCurrentUser', propsUser);
     }

@@ -2,7 +2,11 @@ const { User, Reason, } = require("../models/associations");
 
 
 async function createUser(user) {
-    return await User.create(user);
+    return await User.create(user, {
+        include: [
+            {model: Reason},
+        ],
+    });
 }
 
 async function getAllUsers(criterias = {}) {

@@ -16,7 +16,7 @@
 
   let playing = ref(0);
   let tuto = true;
-  let currentUser = ref<{id:number; username:string; score:number; reason: {reason:string}}>({id:0, username:"temp", score:1, reason: {reason: "Pas de raison"}})
+  let currentUser = ref<{id:number; username:string; score:number; reason: {reason:string}}>({id:0, username:"temp", score:1, reason: {reason: "Fin"}})
   let noCount = 1;
   let currentScore = ref(0);
   let questions = ref<{ question: string; answers: any[]; productivity: number; wellbeing: number; treasury: number; environment: number; role: { link: string } }[]>([]);
@@ -25,11 +25,10 @@
   let environment = ref(50);
   let treasury = ref(50);
   let compteurQuestions = ref(0);
-  let currentScore = ref(0);
 
   // onMounted(() => {
   //   const intervalId = setInterval(() => {
-  //     console.log("value:", currentUser.value?.id);
+  //     console.log("value:", playing.value);
   //   }, 1000);
 
   //   // Clean up the interval when the component is unmounted
@@ -51,6 +50,10 @@ const handleUpdateCurrentUser = (newValue:{id:number; username:string; score:num
 };
 
 const handleScorePlaying = (newValue:number) => {
+  productivity.value = 50;
+  wellbeing.value = 50;
+  treasury.value = 50;
+  environment.value = 50;
   playing.value = newValue;
 };
 
@@ -58,7 +61,7 @@ const handleScorePlayer = (newValue:{id:number; username:string; score:number; r
   currentUser.value = newValue;
 };
 
-const handleSelectedAnswer = (answer: { answer:string,productivity: number; wellbeing: number; treasury: number; environment: number ;reason:string}) => {
+const handleSelectedAnswer = async (answer: { answer:string,productivity: number; wellbeing: number; treasury: number; environment: number ;reason:string}) => {
   if (tuto){
     if (compteurQuestions.value === 0){
       if (answer.answer === "Non") {
@@ -103,11 +106,11 @@ const handleSelectedAnswer = (answer: { answer:string,productivity: number; well
     environment.value += answer.environment;
     
     if (productivity.value <= 0 || wellbeing.value <= 0 || treasury.value <= 0 || environment.value <= 0 || productivity.value >= 100 || wellbeing.value >= 100 || treasury.value >= 100 || environment.value >= 100) {
+      currentUser.value.reason.reason = "Une fin";
+      currentUser.value.score = currentScore.value;
+      console.log(currentScore.value)
+      await updateUser(currentUser.value.id, {score: currentScore.value, reason:{reason:currentUser.value.reason.reason}})
       playing.value = 2;
-      currentUser.value.reason.reason = answer.reason;
-      const data=updateUser(currentUser.value.id, {score: currentScore.value, reason:{reason:currentUser.value.reason.reason}})
-      const json = data.json()
-      console.log("json", json)
       tuto = true;
     }
     else{
