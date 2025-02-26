@@ -7,6 +7,7 @@
   import getUniqueRandom from "../functions/utils/getUniqueRandom.js";
   import askQuestions from "../api/askQuestions.js";
   import updateUser from "../api/updateUser.js";
+  import getReason from "../functions/utils/getReason.js";
   import ScoreBoard from "../components/scoreboard/ScoreBoard.vue";
   import PostIt from "../components/PostIt.vue";
   import Game from "../components/Game.vue";
@@ -104,14 +105,42 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
     treasury.value += answer.treasury;
     environment.value += answer.environment;
     
-    if (productivity.value <= 0 || wellbeing.value <= 0 || treasury.value <= 0 || environment.value <= 0 || productivity.value >= 100 || wellbeing.value >= 100 || treasury.value >= 100 || environment.value >= 100) {
-      currentUser.value.reason.reason = "Une fin";
-      currentUser.value.score = currentScore.value;
-      compteurQuestions.value = 0
-      await updateUser(currentUser.value.id, {score: currentScore.value, reason:{reason:currentUser.value.reason.reason}})
-      playing.value = 2;
-      tuto = true;
+    if (
+        productivity.value <= 0 || wellbeing.value <= 0 || treasury.value <= 0 || environment.value <= 0 ||
+        productivity.value >= 100 || wellbeing.value >= 100 || treasury.value >= 100 || environment.value >= 100
+  ) {
+    let gaugesAtLimit = [];
+    let randomGauge, gaugeValue;
+
+    if (productivity.value <= 0) gaugesAtLimit.push({ name: "productivity", value: productivity.value });
+    if (wellbeing.value <= 0) gaugesAtLimit.push({ name: "wellbeing", value: wellbeing.value });
+    if (treasury.value <= 0) gaugesAtLimit.push({ name: "treasury", value: treasury.value });
+    if (environment.value <= 0) gaugesAtLimit.push({ name: "environment", value: environment.value });
+
+    if (productivity.value >= 100) gaugesAtLimit.push({ name: "productivity", value: productivity.value });
+    if (wellbeing.value >= 100) gaugesAtLimit.push({ name: "wellbeing", value: wellbeing.value });
+    if (treasury.value >= 100) gaugesAtLimit.push({ name: "treasury", value: treasury.value });
+    if (environment.value >= 100) gaugesAtLimit.push({ name: "environment", value: environment.value });
+
+    if (gaugesAtLimit.length > 0) {
+      let selectedGauge = gaugesAtLimit[Math.floor(Math.random() * gaugesAtLimit.length)];
+      randomGauge = selectedGauge.name;
+      gaugeValue = selectedGauge.value;
     }
+
+    currentUser.value.reason.reason = getReason(randomGauge, gaugeValue);
+    currentUser.value.score = currentScore.value;
+    compteurQuestions.value = 0;
+
+    await updateUser(currentUser.value.id, {
+      score: currentScore.value,
+      reason: { reason: currentUser.value.reason.reason }
+    });
+
+    playing.value = 2;
+    tuto = true;
+  }
+
     else{
       currentScore.value++;
       compteurQuestions.value = getUniqueRandom();
