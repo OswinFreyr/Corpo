@@ -24,7 +24,7 @@ onMounted(async () => {
 
 let joystickInput = ref(0);
 
-const switchAnswer = (value) => {
+const switchAnswer = (value: number) => {
   joystickInput.value = value;
 };
 
@@ -32,6 +32,31 @@ const handleSelectedAnswer = (answer: any) => {
   emit("selectedAnswer", answer);
   joystickInput.value = 0;
 };
+
+
+const displayedText = ref('');
+const currentQuestion = computed(() =>
+  localQuestions.value.length > 0 ? localQuestions.value[props.compteurQuestions].question : ''
+);
+const typeText = (text: string) => {
+  displayedText.value = '';
+  let index = 0;
+  const interval = setInterval(() => {
+    if (index < text.length) {
+      displayedText.value += text[index];
+      index++;
+    } else {
+      clearInterval(interval);
+    }
+  }, 10); 
+};
+
+watch(currentQuestion, (newQuestion) => {
+  if (newQuestion) {
+    typeText(newQuestion);
+  }
+});
+
 </script>
 
 <template>
@@ -41,7 +66,7 @@ const handleSelectedAnswer = (answer: any) => {
         <p>Doléance</p>
         <p>x</p>
       </div>
-      <p v-if="localQuestions.length > 0">{{ localQuestions[props.compteurQuestions].question }}</p>
+      <p v-if="localQuestions.length > 0">{{ displayedText }}</p>
       <p v-else>Chargement...</p>
     </div>
     <div class="card">
