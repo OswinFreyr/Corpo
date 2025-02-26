@@ -7,7 +7,6 @@ const props = defineProps<{
   questions: { question: string; answers: any[];role: {link: string} }[];
   tuto: boolean;
   compteurQuestions:number;
-  joystcikInput:number;
 }>();
 
 const emit = defineEmits(["selectedAnswer"]);
@@ -33,6 +32,7 @@ const switchAnswer = () => {
 
 const handleSelectedAnswer = (answer: any) => {
   emit("selectedAnswer", answer);
+  joystickInput.value = 0;
 };
 </script>
 
