@@ -162,7 +162,7 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
       <h2 class="days-label">jours</h2>
     </div>
 
-    <h2>LOGO CORPO.</h2>
+    <img class="corpo-logo" src="../assets/corpo-logo-fit.png" alt="">
     <div></div>
   </div>
 
@@ -225,7 +225,7 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
 .infos{
   display: flex;
   justify-content: space-evenly;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px;  */
 }
 
 .clippy {
@@ -269,6 +269,10 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
 .pseudo{
   display: flex;
   justify-self: center;
+}
+
+.corpo-logo{
+  width: 20%;
 }
 
 </style>
