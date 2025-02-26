@@ -4,18 +4,17 @@
     import askUsers from "../../api/askUsers.js"
     import { onMounted, ref } from "vue";
 
-    let players = ref([]);
+    let players = ref<{username:string, score: number, reason: {reason:string}}[]>([]);
 
     onMounted(async () => {
         players.value = await askUsers();
+        if(players.value.length === 0){
+            players.value.push({username: "Pas de joueur enregistré", score: 0, reason: {reason: "Pas de data"}})
+        }
     });
-    console.log("Scoreboard", players.value);
-
-    // let players = await askUsers()
 </script>
 
 <template>
-
     <div class="window" style="width: 300px">
         
         <div class="title-bar">
