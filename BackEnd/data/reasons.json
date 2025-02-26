@@ -1,12 +1,3 @@
 [
-    { "reason": "Reason 1" },
-    { "reason": "Reason 2" },
-    { "reason": "Reason 3" },
-    { "reason": "Reason 4" },
-    { "reason": "Reason 5" },
-    { "reason": "Reason 6" },
-    { "reason": "Reason 7" },
-    { "reason": "Reason 8" },
-    { "reason": "Reason 9" },
-    { "reason": "Reason 10" }
-  ]
+    { "reason": "Fin" }
+]

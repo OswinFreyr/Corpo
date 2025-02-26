@@ -8,11 +8,10 @@
 
     onMounted(async () => {
         players.value = await askUsers();
-        console.log("Scoreboard", players.value);
     });
+    console.log("Scoreboard", players.value);
 
     // let players = await askUsers()
-    console.log("Scoreboard ", players)
 </script>
 
 <template>

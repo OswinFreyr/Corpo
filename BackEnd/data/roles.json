@@ -1,12 +1,17 @@
 [
-    { "role": "Admin", "link": "https://lorem.picsum/200" },
-    { "role": "User", "link": "https://lorem.picsum/200" },
-    { "role": "Manager", "link": "https://lorem.picsum/200" },
-    { "role": "Editor", "link": "https://lorem.picsum/200" },
-    { "role": "Viewer", "link": "https://lorem.picsum/200" },
-    { "role": "Moderator", "link": "https://lorem.picsum/200" },
-    { "role": "Guest", "link": "https://lorem.picsum/200" },
-    { "role": "Support", "link": "https://lorem.picsum/200" },
-    { "role": "Developer", "link": "https://lorem.picsum/200" },
-    { "role": "Analyst", "link": "https://lorem.picsum/200" }
-  ]
+    {"role": "Secrétaire", "link": "/home/efrei.arcade/EfreiArcade/Corpo/FrontEnd/assets/Laëtitia"},
+    {"role": "Conseil d'administration", "link": "/home/efrei.arcade/EfreiArcade/Corpo/FrontEnd/assets/Philippe"},
+    {"role": "Developpeur", "link": "/home/efrei.arcade/EfreiArcade/Corpo/FrontEnd/assets/Simon"},
+    {"role": "Marketing", "link": "/home/efrei.arcade/EfreiArcade/Corpo/FrontEnd/assets/Leslie"},
+    {"role": "Alternante", "link": "/home/efrei.arcade/EfreiArcade/Corpo/FrontEnd/assets/Enora"},
+    {"role": "Responsable financier", "link": "/home/efrei.arcade/EfreiArcade/Corpo/FrontEnd/assets/Sylvain"},
+    {"role": "Chargé de recrutement", "link": "/home/efrei.arcade/EfreiArcade/Corpo/FrontEnd/assets/Geoffroy"},
+    {"role": "Responsable juridique", "link": "/home/efrei.arcade/EfreiArcade/Corpo/FrontEnd/assets/Mathilde"},
+    {"role": "Inspectrice du travail", "link": "/home/efrei.arcade/EfreiArcade/Corpo/FrontEnd/assets/Lucile"},
+    {"role": "Commercial", "link": "/home/efrei.arcade/EfreiArcade/Corpo/FrontEnd/assets/Oumar"},
+    {"role": "Manager", "link": "/home/efrei.arcade/EfreiArcade/Corpo/FrontEnd/assets/Steven"},
+    {"role": "Designer", "link": "/home/efrei.arcade/EfreiArcade/Corpo/FrontEnd/assets/Sebastien"},
+    {"role": "Chef de produit", "link": "/home/efrei.arcade/EfreiArcade/Corpo/FrontEnd/assets/"},
+    {"role": "Gestion de paye", "link": "/home/efrei.arcade/EfreiArcade/Corpo/FrontEnd/assets/Michael"},
+    {"role": "Interim", "link": "/home/efrei.arcade/EfreiArcade/Corpo/FrontEnd/assets/Frédéric"}
+]
