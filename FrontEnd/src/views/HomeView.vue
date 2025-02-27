@@ -259,7 +259,7 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
 
       <div class="post-it-container">
         <img src="../assets/clippy.gif" alt="Clippy" class="clippy">
-        <PostIt title="Économie" :description="getDescription(treasury, 'treasury')" :value="treasury" image="src/assets/treasury.png" />
+        <PostIt title="Trésorerie" :description="getDescription(treasury, 'treasury')" :value="treasury" image="src/assets/treasury.png" />
       </div>
 
       <PostIt title="Bien-être" :description="getDescription(wellbeing, 'wellbeing')" :value="wellbeing" image="src/assets/wellbeing.png" />
