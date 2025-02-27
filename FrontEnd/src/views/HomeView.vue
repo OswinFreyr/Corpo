@@ -21,6 +21,14 @@
   import ScoreScreen from "../components/ScoreScreen.vue"
   import HistoryScreen from "../components/HistoryScreen.vue"
 
+  import bonusSound from "../../public/9762.mp3"
+  import startSessionSound from "../../public/start-session.mp3"
+  import endSessionSound from "../../public/end-session.mp3"
+
+  const audioBonus = new Audio(bonusSound); 
+  const audioEndSession = new Audio(endSessionSound);
+
+
   let playing = ref(0);
   let tuto = true;
   let currentUser = ref<{id:number; username:string; score:number; reason: {reason:string}}>({id:0, username:"temp", score:1, reason: {reason: "Fin"}})
@@ -149,6 +157,7 @@ const handleBonusEvent = () => {
     if (Math.random() < 0.5) { 
       randomBonus.value = getEvent();
       bonusTriggered.value = true;
+      audioBonus.play();
 
       setTimeout(() => {
         productivity.value += randomBonus.value.productivity;
@@ -254,6 +263,7 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
     players.value = await askUsers();
     compteurQuestions.value = 0;
     playing.value = 2;
+    audioEndSession.play();
     tuto = true;
   }
 
