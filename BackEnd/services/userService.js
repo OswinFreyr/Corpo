@@ -9,6 +9,20 @@ async function createUser(user) {
     });
 }
 
+async function getUserById(id) {
+    const role = await User.findByPk(id, {
+        include: [
+            {model: Reason},
+        ]
+    });
+    if (role) {
+        return role.toJSON();
+    }
+    else {
+        return null;
+    }
+}
+
 async function getAllUsers(criterias = {}) {
     const where = {}
     if (criterias.username) {
@@ -106,4 +120,4 @@ async function createAllUsers(users, ) {
     }
 }
 
-module.exports = { createUser, getAllUsers, getLimitedUsers, updateUser, deleteUser, createAllUsers }
+module.exports = { createUser, getUserById, getAllUsers, getLimitedUsers, updateUser, deleteUser, createAllUsers }

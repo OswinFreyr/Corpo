@@ -10,6 +10,22 @@ async function createUser(req, res) {
     }
 }
 
+async function getUserById(req, res) {
+    try {
+        const id = req.query.id;
+        const role = await userService.getUserById(id);
+        if(role){
+            res.json(role);
+        }
+        else {
+            res.json({"error": `User ${id} not found :(`});
+        }
+    }
+    catch (err) {
+        res.status(500).json({message: err.message});
+    }
+};
+
 async function getAllUsers(req, res) {
     try{
         const { offset, limit, username, score } = req.query;
@@ -64,4 +80,4 @@ async function deleteUser (req, res){
     }
 }
 
-module.exports = { createUser, getAllUsers, getLimitedUsers, updateUser, deleteUser }
+module.exports = { createUser, getUserById, getAllUsers, getLimitedUsers, updateUser, deleteUser }

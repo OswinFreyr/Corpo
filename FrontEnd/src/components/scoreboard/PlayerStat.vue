@@ -19,6 +19,8 @@ const handleClick = (player: { username: string; score: number; reason: {reason:
       v-for="(player, index) in props.players" 
       :key="index" 
       @click="handleClick(player)"
+      class="position"
+      :class="[{ 'first' : index === 0}, { 'second' : index === 1}, { 'third' : index === 2}]"
     >
       {{ player.username }} - {{ player.score }} jours
     </li>
@@ -40,6 +42,21 @@ li {
   cursor: pointer;
   padding: 5px;
   text-align: left;
+}
+
+
+.position.first {
+  font-size: medium;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.position.second {
+  font-size: medium;
+  font-weight: bold;
+}
+.position.third {
+  font-size: medium;
+  font-weight: bold;
 }
 
 </style>
