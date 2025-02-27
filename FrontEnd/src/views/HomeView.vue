@@ -54,6 +54,7 @@ const handleScorePlaying = (newValue:number) => {
   wellbeing.value = 50;
   treasury.value = 50;
   environment.value = 50;
+  currentScore.value = 0;
   playing.value = newValue;
 };
 
@@ -104,7 +105,6 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
     wellbeing.value += answer.wellbeing;
     treasury.value += answer.treasury;
     environment.value += answer.environment;
-    
     if (
         productivity.value <= 0 || wellbeing.value <= 0 || treasury.value <= 0 || environment.value <= 0 ||
         productivity.value >= 100 || wellbeing.value >= 100 || treasury.value >= 100 || environment.value >= 100
@@ -130,13 +130,13 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
 
     currentUser.value.reason.reason = getReason(randomGauge, gaugeValue);
     currentUser.value.score = currentScore.value;
-    compteurQuestions.value = 0;
+    
 
     await updateUser(currentUser.value.id, {
       score: currentScore.value,
       reason: { reason: currentUser.value.reason.reason }
     });
-
+    compteurQuestions.value = 0;
     playing.value = 2;
     tuto = true;
   }

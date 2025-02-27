@@ -8,7 +8,6 @@ import ProgressBar from "./ProgressBar.vue";
         value: number;
     }>();
 
-    console.log(props.image) // console.log -> ../assets/chat.png
 
 </script>
 
