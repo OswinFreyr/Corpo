@@ -187,6 +187,11 @@ watch(currentQuestion, (newQuestion) => {
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
 
   animation: floatAnimation 4s ease-in-out infinite;
+
+  min-height: 150px; 
+  max-width: 100%;
+  /* overflow: hidden; */
+  /* padding-bottom: 15px; */
 }
 
 .question::before {
