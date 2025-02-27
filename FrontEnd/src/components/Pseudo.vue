@@ -188,49 +188,59 @@ const triggerAction = (input: number, buttonOrAxis: string, stringAction?: strin
 </script>
 
 <template>
-  <div class="window" style="width: 500px">
-    <div class="title-bar">
-      <div class="title-bar-text">Nouveau joueur</div>
-      <div class="title-bar-controls">
-        <button aria-label="Minimize"></button>
-        <button aria-label="Maximize"></button>
-        <button aria-label="Close"></button>
+
+  <div class="template">
+
+      <div v-if="isNotifVisible" class="notification">
+        <img src="../assets/security.png"/>
+        <span>{{ notification }}</span>
       </div>
-    </div>
-
-    <div class="window-body">
-      <ul class="liste">
-        <li>Fichier</li>
-        <li>Contact</li>
-        <li>Actions</li>
-        <li>Outils</li>
-        <li>Aide</li>
-      </ul>
-
-      <div class="form">
-        <h4 style="text-align: center">LOGO CORPO</h4>
-        <!-- <img src="" alt="logo corpo" /> -->
-
-        <div class="field-row">
-          <label for="text21">Pseudo</label>
-          <input id="text21" type="text" v-model="inputText" />
+    
+    
+    <div class="window" style="width: 500px">
+      <div class="title-bar">
+        <div class="title-bar-text">Nouveau joueur</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
         </div>
-
-        <div class="keyboard">
-        
-
-          <button
-            v-for="key in keys"
-            :key="key"
-            @click="inputKeyboard(key)"
-            :ref="setButtonRef(key)"
-          >
-            {{ key }}
-          </button>
+      </div>
+    
+      <div class="window-body">
+        <ul class="liste">
+          <li>Fichier</li>
+          <li>Contact</li>
+          <li>Actions</li>
+          <li>Outils</li>
+          <li>Aide</li>
+        </ul>
+    
+        <div class="form">
+          <img class="corpo-logo" src="../assets/corpo-logo-fit.png" alt="logo corpo" />
+    
+          <div class="field-row">
+            <label for="text21">Pseudo</label>
+            <input id="text21" type="text" v-model="inputText" />
+          </div>
+    
+          <div class="keyboard">
+          
+    
+            <button
+              v-for="key in keys"
+              :key="key"
+              @click="inputKeyboard(key)"
+              :ref="setButtonRef(key)"
+            >
+              {{ key }}
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
 </template>
 
 <style scoped>
@@ -267,6 +277,7 @@ ul {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  align-items: center;
 }
 
 ul {
@@ -280,5 +291,30 @@ ul {
 
 .liste {
   padding-left: 0;
+}
+
+.corpo-logo{
+  width: 40%;
+}
+.template{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.notification{
+  background-color: #fffee0;
+  border: solid 1px #000;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+  font-size: small;
+  font-weight: bold;
+}
+.notification>img{
+  width: 32px;
 }
 </style>
