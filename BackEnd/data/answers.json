@@ -312,6 +312,27 @@
 	{"answer": "Oui, un canal de communication dédié renforcera le sentiment d'appartenance et la satisfaction des travailleurs intérimaires.", "wellbeing": 20, "treasury": -10, "productivity": 15, "environment": 5, "reasonId": 1, "questionId": 149},
 	{"answer": "Non, le temps et les ressources nécessaires pour maintenir un tel canal pourraient être mieux utilisés ailleurs.", "wellbeing": -20, "treasury": 10, "productivity": -15, "environment": -5, "reasonId": 1, "questionId": 149},
 	{"answer": "Oui, un programme spécifique de fidélisation augmente notre réputation en tant qu'employeur respectueux et attractif pour tous types de travailleurs.", "wellbeing": 10, "treasury": -5, "productivity": 5, "environment": 10, "reasonId": 1, "questionId": 150},
-	{"answer": "Non, cela pourrait créer des attentes irréalistes parmi les travailleurs temporaires qui pourraient s'attendre à des avantages semblables à ceux des permanents, menant à des frustrations.", "wellbeing": -10, "treasury": 5, "productivity": -5, "environment": -10, "reasonId": 1, "questionId": 150}
+	{"answer": "Non, cela pourrait créer des attentes irréalistes parmi les travailleurs temporaires qui pourraient s'attendre à des avantages semblables à ceux des permanents, menant à des frustrations.", "wellbeing": -10, "treasury": 5, "productivity": -5, "environment": -10, "reasonId": 1, "questionId": 150},
+
+	{"answer": "Oui, du nouveau papier fera plaisir à nos clients et actionnaires.", "wellbeing": 10, "treasury": -15, "productivity": -5, "environment": -5, "reasonId": 1, "questionId": 151},
+	{"answer": "Non, quelle horreur, nous avons déjà plein de papier en plus", "wellbeing": -5, "treasury": 0, "productivity": -5, "environment": 0, "reasonId": 1, "questionId": 151},
+	{"answer": "Oui, un programme spécifique de fidélisation augmente notre réputation en tant qu'employeur respectueux et attractif pour tous types de travailleurs.", "wellbeing": 10, "treasury": -5, "productivity": 5, "environment": 10, "reasonId": 1, "questionId": 152},
+	{"answer": "Non, cela pourrait créer des attentes irréalistes parmi les travailleurs temporaires qui pourraient s'attendre à des avantages semblables à ceux des permanents, menant à des frustrations.", "wellbeing": -10, "treasury": 5, "productivity": -5, "environment": -10, "reasonId": 1, "questionId": 152},
+
+	{"answer": "Nous serions des fourmis car on travaille dur et en équipes.", "wellbeing": 0, "treasury": 0, "productivity": 5, "environment": 0, "reasonId": 1, "questionId": 151},
+	{"answer": "Que cette question soit posé en conseil d'administration m'inquiète.", "wellbeing": -5, "treasury": 0, "productivity": 0, "environment": 0, "reasonId": 1, "questionId": 151},
+	{"answer": "Regarder toutes les saisons de The Walking Dead pour savoir comment faire.", "wellbeing": 5, "treasury": 0, "productivity": -5, "environment": 0, "reasonId": 1, "questionId": 152},
+	{"answer": "Décider d'une nouvelle campagne de com pour séduire les nouveaux clients zombies.", "wellbeing": 0, "treasury": -5, "productivity": 0, "environment": 0, "reasonId": 1, "questionId": 152},
+
+	{"answer": "Mets toi un bandeau sur les yeux, tu seras dans le noir aussi.", "wellbeing": 5, "treasury": 0, "productivity": 0, "environment": 0, "reasonId": 1, "questionId": 151},
+	{"answer": "Oui, pas de souci c'est plus écolo.", "wellbeing": -5, "treasury": 5, "productivity": -10, "environment": 5, "reasonId": 1, "questionId": 151},
+	{"answer": "Bien évidemment !", "wellbeing": 10, "treasury": 0, "productivity": -10, "environment": 0, "reasonId": 1, "questionId": 152},
+	{"answer": "Je préfère garder mon tapis intact...", "wellbeing": -5, "treasury": 0, "productivity": 0, "environment": 0, "reasonId": 1, "questionId": 152},
+
+	{"answer": "Mettez le paquet, il faut parler aux jeunes.", "wellbeing": 0, "treasury": -15, "productivity": -5, "environment": 0, "reasonId": 1, "questionId": 151},
+	{"answer": "Non, encore ?", "wellbeing": 0, "treasury": -5, "productivity": -5, "environment": 0, "reasonId": 1, "questionId": 151},
+	{"answer": "Feu vert ! Je pense qu'on a la collaboration de l'année.", "wellbeing": -15, "treasury": -5, "productivity": 0, "environment": 0, "reasonId": 1, "questionId": 152},
+	{"answer": "Non par pitié.", "wellbeing": 5, "treasury": 0, "productivity": 0, "environment": 0, "reasonId": 1, "questionId": 152}
+
 
 ]

@@ -162,6 +162,19 @@
     {"question": "Est-ce le moment de revoir nos partenariats avec les agences de travail temporaire pour obtenir de meilleurs tarifs?", "roleId": 15},
     {"question": "Faut-il organiser des sessions d'intégration pour les intérimaires pour améliorer leur engagement?", "roleId": 15},
     {"question": "Doit-on créer un canal de communication dédié pour les préoccupations et suggestions des intérimaires?", "roleId": 15},
-    {"question": "Est-il avantageux de développer un programme de fidélisation spécifique pour les travailleurs intérimaires?", "roleId": 15}
+    {"question": "Est-il avantageux de développer un programme de fidélisation spécifique pour les travailleurs intérimaires?", "roleId": 15},
+
+    {"question": "Peut-on acheter 100 rames de papier Diddle pour le courrier professionnel ?", "roleId": 1},
+    {"question": "Greta Thunberg souhaite prendre rendez-vous pour discuter avec vous de notre impact écologique.", "roleId": 1},
+
+    {"question": "Si notre entreprise devait être représentée par un animal, lequel serait-ce ?", "roleId": 2},
+    {"question": "En cas d’invasion zombie, quelle serait la première décision stratégique de l’entreprise pour assurer sa survie (en dehors de virer Geoffroy en premier) ?", "roleId": 2},
+
+    {"question": "J'ai besoin d'être dans la pénombre pour coder. Je peux éteindre toutes les lumières ?", "roleId": 3},
+    {"question": "Je peux ramener mon chien au bureau ? Il ne fera aucun dégats...", "roleId": 3},
+
+    {"question": "Je propose à l'équipe de faire un tiktok pour promouvoir notre nouveau produit.", "roleId": 4},
+    {"question": "On pourrait réaliser un clip avec Morgane Makeup pour placer notre produit.", "roleId": 4}
+
 
 ]
