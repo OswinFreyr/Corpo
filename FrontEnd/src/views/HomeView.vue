@@ -2,6 +2,7 @@
 
   import "xp.css/dist/XP.css";
   import { ref, onMounted, computed, watch, onUnmounted } from 'vue';
+  import { bus } from "../scripts/eventBus.js"
 
   import getDescription from "../functions/utils/getDescription.js";
   import getUniqueRandom from "../functions/utils/getUniqueRandom.js";
@@ -26,6 +27,51 @@
   let treasury = ref(50);
   let compteurQuestions = ref(0);
 
+  const previousButtonStates = ref(new Array(17).fill(false));
+const previousAxesStates = ref(new Float32Array(4).fill(0.0));
+
+let rafId: number | null = null;
+
+const processGamepadInput = (gamepad: Gamepad) => {
+  for (let i = 0; i < gamepad.buttons.length; i++) {
+    const isPressed = gamepad.buttons[i].pressed;
+    if (isPressed !== previousButtonStates.value[i]) {
+      if (isPressed) {
+        console.log(`Button ${i} pressed!`);
+        bus.emit('gamepadInput', { button: i, action: "pressed"})
+      } else {
+        console.log(`Button ${i} released!`);
+        //bus.emit('gamepadInput', { button: i, action: "unpressed"})
+      }
+      previousButtonStates.value[i] = isPressed;
+    }
+  }
+
+  for (let i = 0; i < gamepad.axes.length; i++) {
+    const axisValue = gamepad.axes[i];
+    if (Math.abs(axisValue - previousAxesStates.value[i]) > 0.1) {
+      console.log(`Axis ${i} moved to ${axisValue.toFixed(2)}`);
+      if (parseFloat(axisValue.toFixed(2)) !== 0.0){
+        bus.emit('gamepadInput', { axis: i, action: axisValue.toFixed(2)})
+      }
+      
+      previousAxesStates.value[i] = axisValue;
+    }
+  }
+};
+
+const startPollingGamepads = () => {
+  const updateGamepad = () => {
+    const gamepads = navigator.getGamepads();
+    const gamepad = gamepads[0];
+    if (gamepad) {
+      processGamepadInput(gamepad);
+    }
+    rafId = requestAnimationFrame(updateGamepad);
+  };
+  rafId = requestAnimationFrame(updateGamepad);
+};
+
   // onMounted(() => {
   //   const intervalId = setInterval(() => {
   //     console.log("value:", playing.value);
@@ -38,7 +84,27 @@
   // });
 
 onMounted(async () => {
-      questions.value = await askQuestions();
+  window.addEventListener('gamepadconnected', () => {
+    console.log('Gamepad connected');
+    startPollingGamepads();
+  });
+
+  window.addEventListener('gamepaddisconnected', () => {
+    console.log('Gamepad disconnected');
+    if (rafId !== null) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+  });
+  questions.value = await askQuestions();
+});
+
+onUnmounted(() => {
+  if (rafId !== null) {
+    cancelAnimationFrame(rafId);
+  }
+  window.removeEventListener('gamepadconnected');
+  window.removeEventListener('gamepaddisconnected');
 });
 
 const handleUpdatePlaying = (newValue:number) => {
