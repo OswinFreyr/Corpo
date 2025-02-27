@@ -60,8 +60,7 @@ const enterPressed = async () => {
       </ul>
 
       <div class="form">
-        <h4 style="text-align: center;">LOGO CORPO</h4>
-        <!-- <img src="" alt="logo corpo" /> -->
+        <img class="corpo-logo" src="../assets/corpo-logo-fit.png" alt="logo corpo" /> 
 
         <div class="field-row">
           <label for="text21">Pseudo</label>
@@ -114,6 +113,7 @@ ul {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    align-items: center;
 }
 
 ul {
@@ -129,4 +129,7 @@ ul {
   padding-left: 0;
 }
 
+.corpo-logo{
+  width: 40%;
+}
 </style>

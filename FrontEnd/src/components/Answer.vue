@@ -9,7 +9,7 @@ const emit = defineEmits(['selectedAnswer']);
 </script>
 
 <template>
-  <div class="window" style="width: 300px">
+  <div class="window" style="width: 400px">
     <div class="title-bar">
       <div class="title-bar-text">Réponse choisie</div>
       <div class="title-bar-controls">
@@ -26,4 +26,11 @@ const emit = defineEmits(['selectedAnswer']);
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+  .window-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+</style>

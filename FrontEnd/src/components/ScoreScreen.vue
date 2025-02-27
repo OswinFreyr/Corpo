@@ -25,7 +25,7 @@
 <div class="window" style="width: 500px">
 
   <div class="title-bar">
-    <div class="title-bar-text">Fin du jeu</div>
+    <div class="title-bar-text">Fin du jeu -- {{ player.username }}</div>
     <div class="title-bar-controls">
       <button aria-label="Minimize"></button>
       <button aria-label="Maximize"></button>
@@ -36,10 +36,10 @@
   <div class="window-body">
     <div>
         <ul class="infos">
-            <li>Bravo {{ player.username }} !</li>
-            <li>Vous avez maintenu l'entreprise à flots durant {{ player.score }} jours</li>
-            <li>Raison de votre flagrant échec : {{ player.reason.reason }}</li>
-            <li>(Rejouez à vos risques et périls !)</li>
+            <li class="info-title">Défaite !</li>
+            <li class="info-subtitle">Vous avez maintenu l'entreprise à flots durant <strong> {{ player.score }}</strong> jours</li>
+            <li class="info-reason">Raison de votre flagrant échec : {{ player.reason.reason }}</li>
+            <li >Rejouez à vos risques et périls !</li>
         </ul>
     </div>
     <div class="buttons">
@@ -71,5 +71,21 @@
         gap: 10px;
         justify-content: center;
         margin-top: 20px;
+    }
+
+    .info-title{
+        font-size: large;
+    }
+
+    .info-subtitle{
+        font-size: medium;
+    }
+
+    .info-reason{
+        font-size: small;
+    }
+
+    strong {
+        font-weight: bold;
     }
 </style>
