@@ -1,6 +1,6 @@
 export default async function updateUser(id, userData) {
     try {
-        const user = await fetch('http://localhost:2000/api/v1/users/update?id=' + id, {
+        const user = await fetch(`http://localhost:2000/api/v1/users/update?idUser=${id}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(userData),

@@ -104,7 +104,6 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
     wellbeing.value += answer.wellbeing;
     treasury.value += answer.treasury;
     environment.value += answer.environment;
-    
     if (
         productivity.value <= 0 || wellbeing.value <= 0 || treasury.value <= 0 || environment.value <= 0 ||
         productivity.value >= 100 || wellbeing.value >= 100 || treasury.value >= 100 || environment.value >= 100
