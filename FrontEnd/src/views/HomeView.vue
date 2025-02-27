@@ -29,6 +29,8 @@
   let treasury = ref(50);
   let compteurQuestions = ref(0);
   let players = ref<{username:string, score: number, reason: {reason:string}}[]>([]);
+  let historyQuestions = [];
+  let historyAnswers = [];
 
 
   const previousButtonStates = ref(new Array(17).fill(false));
@@ -173,10 +175,15 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
       tuto = false;
     }
   } else  {
+    console.log("quest", compteurQuestions.value)
+    historyQuestions.push(compteurQuestions.value);
+    console.log("historyQuestions: " + historyQuestions[historyQuestions.length -1]);
     productivity.value += answer.productivity;
     wellbeing.value += answer.wellbeing;
     treasury.value += answer.treasury;
     environment.value += answer.environment;
+    historyAnswers.push(answer);
+    console.log("historyAnswers: " + historyAnswers[historyAnswers.length -1].answer);
     if (
         productivity.value <= 0 || wellbeing.value <= 0 || treasury.value <= 0 || environment.value <= 0 ||
         productivity.value >= 100 || wellbeing.value >= 100 || treasury.value >= 100 || environment.value >= 100
@@ -284,6 +291,11 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
                 <h2 class="score">{{ currentScore }}</h2>
               </div>
               <h2 class="days-label">jours</h2>
+            </div>
+            <div class="window-body" style="padding-left: 25px;">
+              <div class="score-value-container">
+                <p class="score">{{ players[0].username }} a fait un plus haut score avec {{ players[0].score }} jours !</p>
+              </div>
             </div>
           </div>
       </div>
