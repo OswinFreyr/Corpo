@@ -26,6 +26,7 @@
   let environment = ref(50);
   let treasury = ref(50);
   let compteurQuestions = ref(0);
+  let history = [];
 
   const previousButtonStates = ref(new Array(17).fill(false));
 const previousAxesStates = ref(new Float32Array(4).fill(0.0));
@@ -171,6 +172,8 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
     wellbeing.value += answer.wellbeing;
     treasury.value += answer.treasury;
     environment.value += answer.environment;
+    history.push(answer.answer);
+    console.log("history: " + history[0]);
     if (
         productivity.value <= 0 || wellbeing.value <= 0 || treasury.value <= 0 || environment.value <= 0 ||
         productivity.value >= 100 || wellbeing.value >= 100 || treasury.value >= 100 || environment.value >= 100
