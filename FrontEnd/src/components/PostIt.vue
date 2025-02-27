@@ -87,7 +87,7 @@ import ProgressBar from "./ProgressBar.vue";
 
     .description {
         font-size: 14px;
-        color: gray;
+        color: rgb(22, 22, 22);
         margin: 5px 0;
     }
 
