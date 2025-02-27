@@ -54,6 +54,7 @@ const handleScorePlaying = (newValue:number) => {
   wellbeing.value = 50;
   treasury.value = 50;
   environment.value = 50;
+  currentScore.value = 0;
   playing.value = newValue;
 };
 
@@ -129,13 +130,13 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
 
     currentUser.value.reason.reason = getReason(randomGauge, gaugeValue);
     currentUser.value.score = currentScore.value;
-    compteurQuestions.value = 0;
+    
 
     await updateUser(currentUser.value.id, {
       score: currentScore.value,
       reason: { reason: currentUser.value.reason.reason }
     });
-
+    compteurQuestions.value = 0;
     playing.value = 2;
     tuto = true;
   }
