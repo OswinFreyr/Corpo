@@ -15,8 +15,8 @@ export default function verifPseudo(pseudo) {
 
   const normalizedPseudo = normalizeText(pseudo);
 
-  // Check length
-  if (normalizedPseudo.length > 3 && normalizedPseudo.length < 11) && !(bannedWords.some(word => normalizedPseudo.includes(word))) {
+  console.log(!(bannedWords.some(word => normalizedPseudo.includes(word))))
+  if ((normalizedPseudo.length > 3 && normalizedPseudo.length < 11) && !(bannedWords.some(word => normalizedPseudo.includes(word)))) {
     return true;
   } else {
     return false;

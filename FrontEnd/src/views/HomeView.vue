@@ -107,9 +107,11 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
     if (productivity.value <= 0 || wellbeing.value <= 0 || treasury.value <= 0 || environment.value <= 0 || productivity.value >= 100 || wellbeing.value >= 100 || treasury.value >= 100 || environment.value >= 100) {
       currentUser.value.reason.reason = "Une fin";
       currentUser.value.score = currentScore.value;
+      console.log(currentScore.value)
+      console.log("id", currentUser.value.id)
+      await updateUser(currentUser.value.id, {score: currentScore.value, reason:{reason:currentUser.value.reason.reason}})
       compteurQuestions.value = 0;
       currentScore.value = 0;
-      await updateUser(currentUser.value.id, {score: currentScore.value, reason:{reason:currentUser.value.reason.reason}})
       playing.value = 2;
       tuto = true;
     }
