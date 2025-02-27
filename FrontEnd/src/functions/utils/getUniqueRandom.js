@@ -10,7 +10,9 @@ export default function uniqueRandomGenerator() {
     } while (generatedNumbers.has(randomNumber));
 
     generatedNumbers.add(randomNumber);
-    return randomNumber;
+    // console.log("randtab", Array.from(generatedNumbers)[generatedNumbers.size - 1]);
+
+    return generatedNumbers;
 }
 
 

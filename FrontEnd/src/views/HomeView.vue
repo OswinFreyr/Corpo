@@ -26,6 +26,7 @@
   let environment = ref(50);
   let treasury = ref(50);
   let compteurQuestions = ref(0);
+  let compteurQuestionsTab = ref(new Set<number>())
   let history = [];
 
   const previousButtonStates = ref(new Array(17).fill(false));
@@ -134,7 +135,9 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
     if (compteurQuestions.value === 0){
       if (answer.answer === "Non") {
         currentScore.value++;
-        compteurQuestions.value = getUniqueRandom();
+        compteurQuestionsTab.value = getUniqueRandom();
+        compteurQuestions.value = Array.from(compteurQuestionsTab.value)[compteurQuestionsTab.value.size - 1]
+        console.log(compteurQuestions.value)
         tuto = false;
       }
       else if (answer.answer === "Oui") {
@@ -172,7 +175,7 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
     wellbeing.value += answer.wellbeing;
     treasury.value += answer.treasury;
     environment.value += answer.environment;
-    history.push(answer.answer);
+    history.push(answer);
     console.log("history: " + history[0]);
     if (
         productivity.value <= 0 || wellbeing.value <= 0 || treasury.value <= 0 || environment.value <= 0 ||

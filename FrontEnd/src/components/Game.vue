@@ -33,7 +33,7 @@ const handleSelectedAnswer = (answer: any) => {
   joystickInput.value = 0;
 };
 
-
+console.log("game", props.compteurQuestions)
 const displayedText = ref('');
 const currentQuestion = computed(() =>
   localQuestions.value.length > 0 ? localQuestions.value[props.compteurQuestions].question : ''
