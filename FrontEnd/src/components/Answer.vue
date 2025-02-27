@@ -20,7 +20,7 @@ const emit = defineEmits(['selectedAnswer']);
     </div>
 
     <div class="window-body">
-      <p>{{ props.answer.answer }}</p>
+      <p class="answer-text">{{ props.answer.answer }}</p>
       <button @click="emit('selectedAnswer', props.answer)">Répondre</button>
     </div>
   </div>
@@ -32,5 +32,9 @@ const emit = defineEmits(['selectedAnswer']);
     flex-direction: column;
     align-items: center;
     gap: 10px;
+  }
+
+  .answer-text{
+    font-size: small;
   }
 </style>

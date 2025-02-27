@@ -79,6 +79,11 @@ watch(currentQuestion, (newQuestion) => {
   <div class="rowing">
     <img src="/src/assets/left.png" class="arrow left-arrow" @click="switchAnswer(1)"></img>
     <div class="cards-answer">
+
+      <div v-show="joystickInput===0" class="choose-answer">
+        <img src="../assets/clippy.gif" alt="Clippy" class="clippy">
+        <span>Choisissez une réponse</span>
+      </div>
   
       <div v-show="joystickInput !== 0"  class="answers-wrapper " :style="{ transform: `translateX(${joystickInput === 1 ? '0%' : '-100%'})` }">
         <div class="card-answer">
@@ -341,4 +346,35 @@ img {
   width: 32px;
 }
 
+.choose-answer{
+  display: flex;
+  align-items: center;
+}
+
+.choose-answer>span {
+  padding: 40px;
+  min-width: 100%;
+  background-color: #f9f2b8;
+  box-shadow: 1px 2.5px 1px #c7c292;
+  position: relative;
+  font-size: medium;
+  font-family: 'Tahoma';
+  background-image: repeating-linear-gradient(
+    to bottom, 
+    transparent 0px, 
+    transparent 18px,  
+    rgba(128, 128, 128, 0.345) 19px, 
+    transparent 20px   
+  );
+  background-size: 100% 20px;
+}
+
+.clippy {
+  position: absolute;
+  top: 5px;
+  left:100px;
+  width: 50px; 
+  transform: rotate(-15deg);
+  z-index: 100;
+}
 </style>

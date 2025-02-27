@@ -3,6 +3,7 @@ import "xp.css/dist/XP.css";
 import { defineProps, ref } from "vue";
 import verifPseudo from "../functions/utils/verifPseudo";
 import createUser from "../api/createUser";
+import notifyPseudo from "../functions/utils/notifyPseudo";
 
 const props = defineProps<{
   playing: number;
@@ -26,9 +27,13 @@ const deleteCharacter = () => {
 
 let propsUser = props.currentUser;
 
+let notification = ref("");
+let isNotifVisible = ref(false);
+
 const enterPressed = async () => {
-  if (verifPseudo(inputText.value)) {
-    alert("Ce pseudo est interdit. Veuillez en choisir un autre.");
+  if (!verifPseudo(inputText.value)) {
+    notification.value = notifyPseudo(inputText.value);
+    isNotifVisible.value = true;
   } else {
     const propsUserData = await createUser({username: inputText.value, score: 1, reason:{reason: "Fin"}})
     propsUser = await propsUserData.json()
@@ -38,41 +43,50 @@ const enterPressed = async () => {
 };
 </script>
 
-<template>
-  <div class="window" style="width: 500px">
+<template class="template">
 
-    <div class="title-bar">
-      <div class="title-bar-text">Nouveau joueur</div>
-      <div class="title-bar-controls">
-        <button aria-label="Minimize"></button>
-        <button aria-label="Maximize"></button>
-        <button aria-label="Close"></button>
-      </div>
+  <div class="template">
+
+    <div v-if="isNotifVisible" class="notification">
+      <img src="../assets/security.png"/>
+      <span>{{ notification }}</span>
     </div>
-
-    <div class="window-body">
-      <ul class="liste">
-        <li>Fichier</li>
-        <li>Contact</li>
-        <li>Actions</li>
-        <li>Outils</li>
-        <li>Aide</li>
-      </ul>
-
-      <div class="form">
-        <img class="corpo-logo" src="../assets/corpo-logo-fit.png" alt="logo corpo" /> 
-
-        <div class="field-row">
-          <label for="text21">Pseudo</label>
-          <input id="text21" type="text" v-model="inputText" />
+  
+    <div class="window" style="width: 500px">
+  
+      <div class="title-bar">
+        <div class="title-bar-text">Nouveau joueur</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
         </div>
-
-        <div class="keyboard">
-          <button v-for="key in keys" :key="key" @click="addCharacter(key)">
-            {{ key }}
-          </button>
-          <button @click="deleteCharacter">Supprimer</button>
-          <button @click="enterPressed">Entrer</button>
+      </div>
+  
+      <div class="window-body">
+        <ul class="liste">
+          <li>Fichier</li>
+          <li>Contact</li>
+          <li>Actions</li>
+          <li>Outils</li>
+          <li>Aide</li>
+        </ul>
+  
+        <div class="form">
+          <img class="corpo-logo" src="../assets/corpo-logo-fit.png" alt="logo corpo" /> 
+  
+          <div class="field-row">
+            <label for="text21">Pseudo</label>
+            <input id="text21" type="text" v-model="inputText" />
+          </div>
+  
+          <div class="keyboard">
+            <button v-for="key in keys" :key="key" @click="addCharacter(key)">
+              {{ key }}
+            </button>
+            <button @click="deleteCharacter">Supprimer</button>
+            <button @click="enterPressed">Entrer</button>
+          </div>
         </div>
       </div>
     </div>
@@ -131,5 +145,29 @@ ul {
 
 .corpo-logo{
   width: 40%;
+}
+
+.template{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.notification{
+  background-color: #fffee0;
+  border: solid 1px #000;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+  font-size: small;
+  font-weight: 700;
+}
+
+.notification>img{
+  width: 32px;
 }
 </style>
