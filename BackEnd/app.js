@@ -30,7 +30,6 @@ app.use("/api/v1/users",userRouter);
 
 db.sync(/*{force : true}*/)
     .then(async () => {
-        Init.runInit()
         app.listen(PORT, () => {
             console.log(`http://localhost:${PORT}`);
         })
