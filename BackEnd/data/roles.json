@@ -1,0 +1,17 @@
+[
+    {"role": "Secrétaire", "link": "/src/assets/rmbg/laetitia.png"},
+    {"role": "Conseil d'administration", "link": "/src/assets/rmbg/philippe.png"},
+    {"role": "Developpeur", "link": "/src/assets/rmbg/simon.png"},
+    {"role": "Marketing", "link": "/src/assets/rmbg/leslie.png"},
+    {"role": "Alternante", "link": "/src/assets/rmbg/enora.png"},
+    {"role": "Responsable financier", "link": "/src/assets/rmbg/sylvain.png"},
+    {"role": "Chargé de recrutement", "link": "/src/assets/rmbg/geoffroy.png"},
+    {"role": "Responsable juridique", "link": "/src/assets/rmbg/mathilde.png"},
+    {"role": "Inspectrice du travail", "link": "/src/assets/rmbg/lucile.png"},
+    {"role": "Commercial", "link": "/src/assets/rmbg/oumar.png"},
+    {"role": "Manager", "link": "/src/assets/rmbg/steven.png"},
+    {"role": "Designer", "link": "/src/assets/rmbg/sebastien.png"},
+    {"role": "Chef de produit", "link": "/src/assets/rmbg/marion.png"},
+    {"role": "Gestion de paye", "link": "/src/assets/rmbg/michael.png"},
+    {"role": "Interim", "link": "/src/assets/rmbg/frederic.png"}
+]
