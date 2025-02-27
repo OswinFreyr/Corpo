@@ -12,6 +12,8 @@
   import askOneQuestion from "../api/askOneQuestion.js"
   import updateUser from "../api/updateUser.js";
   import getReason from "../functions/utils/getReason.js";
+  import getEvent from "../functions/utils/getEvent.js";
+
   import ScoreBoard from "../components/scoreboard/ScoreBoard.vue";
   import PostIt from "../components/PostIt.vue";
   import Game from "../components/Game.vue";
@@ -138,6 +140,33 @@ const handleScorePlayer = (newValue:{id:number; username:string; score:number; r
   currentUser.value = newValue;
 };
 
+let lastBonusDay = 0;
+let randomBonus = ref();
+let bonusTriggered = ref(false);
+
+const handleBonusEvent = () => {
+  if (currentScore.value >= 5 && currentScore.value - lastBonusDay >= 7) {
+    if (Math.random() < 0.5) { 
+      randomBonus.value = getEvent();
+      bonusTriggered.value = true;
+
+      setTimeout(() => {
+        productivity.value += randomBonus.value.productivity;
+        wellbeing.value += randomBonus.value.wellbeing;
+        treasury.value += randomBonus.value.treasury;
+        environment.value += randomBonus.value.environment;
+      }, 5000); 
+      
+      
+      lastBonusDay = currentScore.value;
+
+      setTimeout(() => {
+        bonusTriggered.value = false;
+      }, 10000); 
+    }
+  }
+};
+
 const handleSelectedAnswer = async (answer: { answer:string,productivity: number; wellbeing: number; treasury: number; environment: number ;reason:string}) => {
   if (tuto){
     if (compteurQuestions.value === 0){
@@ -177,6 +206,9 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
       tuto = false;
     }
   } else  {
+
+    handleBonusEvent();
+    
     let questionTemp = await askOneQuestion(compteurQuestions.value)
     historyQuestions.push(questionTemp);
     productivity.value += answer.productivity;
@@ -298,6 +330,12 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
               </div>
             </div>
           </div>
+          <div v-if="bonusTriggered" class="bonus" :class="{ show: bonusTriggered }">
+            <p>Alerte</p>
+            <span>
+                {{ randomBonus.description }}
+            </span>
+          </div>
       </div>
       <ScoreBoard v-if="playing == 2" :players="players"/>
     </div>
@@ -346,8 +384,10 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
 
 .score-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 5px;
+  justify-content: center;
+  gap: 20px;
 }
 
 @keyframes scoreIncrease {
@@ -393,5 +433,46 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
 .highlight{
   font-weight: 700;
 }
+
+.bonus>p{
+  font-weight: bold;
+  font-size: medium;
+}
+
+.bonus>span{
+  font-size: medium;
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.bonus {
+  background-color: #fffee0;
+  border: solid 1px #000;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+  transform: translateX(100%); 
+  opacity: 0;
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.bonus.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
 
 </style>
