@@ -45,7 +45,6 @@ const keyboardLayout: KeyboardLayout = keys.reduce((acc: KeyboardLayout, key: st
   return acc;
 }, {});
 
-console.log(keyboardLayout);
 
 const buttonRefs: any = {};
 keys.forEach(key => {
@@ -132,7 +131,6 @@ const triggerAction = (input: number, buttonOrAxis: string, stringAction?: strin
         inputKeyboard(currentLetter)
       }
     } else if (buttonOrAxis == "axis" && stringAction !== undefined){
-      console.log("Axis Pressed!")
       let action: number = parseFloat(stringAction);
       if (input == 0){
         if (action == 1.00){
@@ -182,7 +180,6 @@ const triggerAction = (input: number, buttonOrAxis: string, stringAction?: strin
         }
       }
       changeFocusAndLetter(currentXCoordinate, currentYCoordinate)
-      console.log(`${currentXCoordinate}-${currentYCoordinate}`)
     }
 };
 </script>

@@ -1,17 +1,13 @@
 <script setup lang="ts">
     import "xp.css/dist/XP.css";    
     import PlayerStat from "./PlayerStat.vue"
-    import askUsers from "../../api/askUsers.js"
     import { onMounted, ref } from "vue";
 
-    let players = ref<{username:string, score: number, reason: {reason:string}}[]>([]);
+    const props = defineProps<{
+        players: {username:string, score: number, reason: {reason:string}}[]
+    }>();
 
-    onMounted(async () => {
-        players.value = await askUsers();
-        if(players.value.length === 0){
-            players.value.push({username: "Pas de joueur enregistré", score: 0, reason: {reason: "Pas de data"}})
-        }
-    });
+
 </script>
 
 <template>
@@ -27,7 +23,7 @@
         </div>
 
         <div class="window-body">
-            <PlayerStat :players="players"/>
+            <PlayerStat :players="props.players"/>
         </div>
     
     </div>
