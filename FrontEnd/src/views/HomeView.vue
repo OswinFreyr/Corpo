@@ -7,6 +7,8 @@
   import getDescription from "../functions/utils/getDescription.js";
   import getUniqueRandom from "../functions/utils/getUniqueRandom.js";
   import askQuestions from "../api/askQuestions.js";
+  import askUsers from "../api/askUsers.js"
+  import askOneUser from "../api/askOneUser.js"
   import updateUser from "../api/updateUser.js";
   import getReason from "../functions/utils/getReason.js";
   import ScoreBoard from "../components/scoreboard/ScoreBoard.vue";
@@ -26,6 +28,8 @@
   let environment = ref(50);
   let treasury = ref(50);
   let compteurQuestions = ref(0);
+  let players = ref<{username:string, score: number, reason: {reason:string}}[]>([]);
+
 
   const previousButtonStates = ref(new Array(17).fill(false));
 const previousAxesStates = ref(new Float32Array(4).fill(0.0));
@@ -37,10 +41,8 @@ const processGamepadInput = (gamepad: Gamepad) => {
     const isPressed = gamepad.buttons[i].pressed;
     if (isPressed !== previousButtonStates.value[i]) {
       if (isPressed) {
-        console.log(`Button ${i} pressed!`);
         bus.emit('gamepadInput', { button: i, action: "pressed"})
       } else {
-        console.log(`Button ${i} released!`);
         //bus.emit('gamepadInput', { button: i, action: "unpressed"})
       }
       previousButtonStates.value[i] = isPressed;
@@ -97,6 +99,10 @@ onMounted(async () => {
     }
   });
   questions.value = await askQuestions();
+  players.value = await askUsers();
+    if(players.value.length === 0){
+        players.value.push({username: "Pas de joueur enregistré", score: 0, reason: {reason: "Pas de data"}})
+    }
 });
 
 onUnmounted(() => {
@@ -196,12 +202,17 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
 
     currentUser.value.reason.reason = getReason(randomGauge, gaugeValue);
     currentUser.value.score = currentScore.value;
-    
+
+    let tempUser = await askOneUser(currentUser.value.id);
+    if (tempUser.score > currentScore.value) {
+      currentUser.value.score = tempUser.score;
+    }
 
     await updateUser(currentUser.value.id, {
-      score: currentScore.value,
+      score: currentUser.value.score,
       reason: { reason: currentUser.value.reason.reason }
     });
+    players.value = await askUsers();
     compteurQuestions.value = 0;
     playing.value = 2;
     tuto = true;
@@ -221,12 +232,6 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
 
   <!-- Header de la page de jeu-->
   <div class="infos" v-if="playing===1">
-    <div class="score-container">
-      <div class="score-value-container">
-        <h2 class="score">{{ currentScore }}</h2>
-      </div>
-      <h2 class="days-label">jours</h2>
-    </div>
 
     <img class="corpo-logo" src="../assets/corpo-logo-fit.png" alt="">
     <div></div>
@@ -235,6 +240,7 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
 
   <div v-if="playing==0" class="pseudo">
     <Pseudo :playing="playing" @updatePlaying="handleUpdatePlaying" :currentUser="currentUser" @updateCurrentUser="handleUpdateCurrentUser"/>
+    <ScoreBoard :players="players"/>
   </div>
 
   <!-- page de jeu-->
@@ -261,8 +267,27 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
     </div>
     
     <!-- scoreboard -->
-    <div>
-      <ScoreBoard />
+    <div >
+        <div v-if="playing == 1" class="score-container">
+          <div class="window" style="width: 400px">
+            <div class="title-bar">
+              <div class="title-bar-text">Réponse choisie</div>
+              <div class="title-bar-controls">
+                <button aria-label="Minimize"></button>
+                <button aria-label="Maximize"></button>
+                <button aria-label="Close"></button>
+              </div>
+            </div>
+
+            <div class="window-body">
+              <div class="score-value-container">
+                <h2 class="score">{{ currentScore }}</h2>
+              </div>
+              <h2 class="days-label">jours</h2>
+            </div>
+          </div>
+      </div>
+      <ScoreBoard v-if="playing == 2" :players="players"/>
     </div>
   </div>
 
@@ -334,7 +359,9 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
 
 .pseudo{
   display: flex;
-  justify-self: center;
+  /* justify-self: center; */
+  justify-content: space-evenly;
+  padding-left: 23%
 }
 
 .corpo-logo{
