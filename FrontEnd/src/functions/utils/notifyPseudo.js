@@ -4,17 +4,17 @@ export default function notifyPsesudo(pseudo){
 
     if(bully){
         switch(pseudo){
-            case "geoffroy" : 
+            case "GEOFFROY" : 
                 return "Ce nom n'est pas interdit mais il le devrait. Quelle idée de s'appeler Geoffroy...";
-            case "sylvain" : 
+            case "SYLVAIN" : 
                 return "Ce pseudo est de mauvais goût, il risquerait de faire crasher la borne. Adieu Sylvain";
-            case "lucile" : 
+            case "LUCILE" : 
                 return "Lucile, c'est moreau-se non comme pseudo ?";
-            case "marion" : 
+            case "MARION" : 
                 return "Il faut préciser le pseudo des marriés. Marions...";
-            case "laetitia" : 
+            case "LAETITIA" : 
                 return "As-tu pensé aux websockets pour valider ton pseudo ?";
-            case "enora" : 
+            case "ENORA" : 
                 return "On bloque ce pseudo pour te remercier pour le budget. MERCI !! ";
             default:
                 return "Je ne sais pas quoi dire. Changez de pseudo";

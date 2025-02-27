@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import { defineProps, defineEmits, computed, onMounted, watch } from "vue";
+import { defineProps, defineEmits, computed, onMounted, watch, onUnmounted } from "vue";
 import Answer from "./Answer.vue";
 import { ref } from 'vue';
+import { bus } from "../scripts/eventBus.js"
+
+
 
 const props = defineProps<{
   questions: { question: string; answers: any[]; productivity: number; wellbeing: number; treasury: number; environment: number; role: { link: string } }[];
@@ -13,13 +16,47 @@ const emit = defineEmits(["selectedAnswer"]);
 
 const questionsTuto = ref<{ question: string; answers: any[]; productivity: number; wellbeing: number; treasury: number; environment: number; role: { link: string } }[]>([]);
 
-const localQuestions = computed(() => {
+const localQuestions: any = computed(() => {
   return props.tuto ? questionsTuto.value : props.questions;
 });
+
+const triggerAction = (input: number, buttonOrAxis: string, stringAction?: string) => {
+    if (buttonOrAxis == "button"){
+      if (input == 1){
+        console.log(localQuestions)
+        handleSelectedAnswer(localQuestions.value[props.compteurQuestions].answers[joystickInput.value -1])
+      }
+    } else if (buttonOrAxis == "axis" && stringAction !== undefined){
+      console.log("Axis Pressed!")
+      let action: number = parseFloat(stringAction);
+      if (input == 0){
+        if (action == 1.00){
+          switchAnswer(2)
+        } else if (action == -1.00){
+          switchAnswer(1)
+        }
+      } 
+    }
+};
+
+
+const handleGamepadInput = (event: { button: number; axis: number; action: string }) => {
+    if (event.button !== null && event.action == "pressed") {
+        triggerAction(event.button, "button");
+    } else if (event.axis !== null){
+      triggerAction(event.axis, "axis", event.action)
+    }
+};
+
 
 onMounted(async () => {
   const response = await fetch("../../public/questionsTuto.json");
   questionsTuto.value = await response.json();
+  bus.on('gamepadInput', handleGamepadInput);
+});
+
+onUnmounted(() => {
+  bus.off('gamepadInput', handleGamepadInput);
 });
 
 let joystickInput = ref(0);
