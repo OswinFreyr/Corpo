@@ -231,7 +231,7 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
 <template class="container">
 
   <!-- Header de la page de jeu-->
-  <div class="infos" v-if="playing===1">
+  <div class="infos" v-if="playing===1 || playing===2">
 
     <img class="corpo-logo" src="../assets/corpo-logo-fit.png" alt="">
     <div></div>
@@ -269,9 +269,9 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
     <!-- scoreboard -->
     <div >
         <div v-if="playing == 1" class="score-container">
-          <div class="window" style="width: 400px">
+          <div class="window" style="width: 400px;">
             <div class="title-bar">
-              <div class="title-bar-text">Réponse choisie</div>
+              <div class="title-bar-text">Score</div>
               <div class="title-bar-controls">
                 <button aria-label="Minimize"></button>
                 <button aria-label="Maximize"></button>
@@ -279,7 +279,7 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
               </div>
             </div>
 
-            <div class="window-body">
+            <div class="window-body" style="padding-left: 25px;">
               <div class="score-value-container">
                 <h2 class="score">{{ currentScore }}</h2>
               </div>
@@ -315,7 +315,7 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
 
 .infos{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   /* margin-bottom: 20px;  */
 }
 
@@ -366,6 +366,12 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
 
 .corpo-logo{
   width: 20%;
+}
+
+.window-body {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 }
 
 </style>
