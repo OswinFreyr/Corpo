@@ -5,6 +5,8 @@ import { bus } from "../scripts/eventBus.js"
 import verifPseudo from "../functions/utils/verifPseudo";
 import createUser from "../api/createUser";
 import notifyPseudo from "../functions/utils/notifyPseudo";
+import startSessionSound from "../../public/start-session.mp3"
+import errorSound from "../../public/erreur.mp3"
 
 const props = defineProps<{
   playing: number;
@@ -77,11 +79,14 @@ let propsUser = props.currentUser;
 
 let notification = ref("");
 let isNotifVisible = ref(false);
+const audioStartSession = new Audio(startSessionSound);
+const audioError = new Audio(errorSound);
 
 const enterPressed = async () => {
   if (!verifPseudo(inputText.value)) {
     notification.value = notifyPseudo(inputText.value);
     isNotifVisible.value = true;
+    audioError.play();
   } else {
     const propsUserData = await createUser({
       username: inputText.value,
@@ -91,6 +96,8 @@ const enterPressed = async () => {
     propsUser = await propsUserData.json();
     emit("updatePlaying", 1);
     emit("updateCurrentUser", propsUser);
+    audioStartSession.play();
+
   }
 };
 
@@ -194,7 +201,7 @@ const triggerAction = (input: number, buttonOrAxis: string, stringAction?: strin
       </div>
     
     
-    <div class="window" style="width: 500px">
+    <div class="window" style="width: 600px">
       <div class="title-bar">
         <div class="title-bar-text">Nouveau joueur</div>
         <div class="title-bar-controls">
@@ -249,6 +256,7 @@ ul {
 
 .keyboard {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 5px;
   margin-top: 10px;
