@@ -162,6 +162,14 @@
     {"question": "Est-ce le moment de revoir nos partenariats avec les agences de travail temporaire pour obtenir de meilleurs tarifs?", "roleId": 15},
     {"question": "Faut-il organiser des sessions d'intégration pour les intérimaires pour améliorer leur engagement?", "roleId": 15},
     {"question": "Doit-on créer un canal de communication dédié pour les préoccupations et suggestions des intérimaires?", "roleId": 15},
-    {"question": "Est-il avantageux de développer un programme de fidélisation spécifique pour les travailleurs intérimaires?", "roleId": 15}
+    {"question": "Est-il avantageux de développer un programme de fidélisation spécifique pour les travailleurs intérimaires?", "roleId": 15},
+
+    {"question": "Devrions-nous faire jouer une partie de LoL durant les entretiens d'embauche afin de tester la capacité de travail en équipe et la communication ?", "roleId": 7},
+    {"question": " Devrions-nous changer de stack pour Jakarta EE ?", "roleId": 3},
+    {"question": " Puis-je amener Syn (mon chien) au bureau ? Il ne fera pas de dégats...", "roleId": 3},
+    {"question": "Souhaitez-vous que je retire 10% du salaire des employés pour le mettre sur votre compte privé ?", "roleId": 14},
+    {"question": "Je pense qu'on devrait faire une collaboration avec Total Energies pour gagner en visibilité.", "roleId": 4}
+
+
 
 ]

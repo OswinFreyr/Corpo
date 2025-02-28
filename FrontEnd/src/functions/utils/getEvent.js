@@ -77,6 +77,13 @@ export default function getEvent(){
             "wellbeing" : 0,
             "productivity" : 0,
             "environment" : 0
+        },
+        {
+            "description" : "Coupure d'électricité dans le quartier, un rat a grignoté les cables. Dommage...",
+            "treasury" : 0,
+            "wellbeing" : 0,
+            "productivity" : -20,
+            "environment" : -10
         }
 
         
