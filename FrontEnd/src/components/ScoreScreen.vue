@@ -183,7 +183,7 @@ const next = () => {
       <div class="window-body">
           <div>
               <ul class="infos">
-                  <li class="info-question">Question : {{ currentQuestion.question }}</li>
+                  <li class="info-question">Question {{ currentIndex }} : {{ currentQuestion.question }}</li>
                   <li class="info-answer">Réponse : {{ currentAnswer.answer }}</li>
                   <li class="info-data">
                           <ul class="infos">
