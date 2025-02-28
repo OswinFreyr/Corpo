@@ -32,9 +32,9 @@ const keys = [
   "Entrer"
 ];
 function calculateCoordinates(index: number): string {
-  const x = Math.ceil((index + 1) / 6); 
-  const y = ((index % 6) + 1);
-  return `${x}-${y}`;
+    const x = Math.ceil((index + 1) / 7);  // Change from 6 to 7 keys per row
+    const y = ((index % 7) + 1);          // Adjust modulo from 6 to 7
+    return `${x}-${y}`;
 }
 
 interface KeyboardLayout {
@@ -139,53 +139,38 @@ const triggerAction = (input: number, buttonOrAxis: string, stringAction?: strin
       }
     } else if (buttonOrAxis == "axis" && stringAction !== undefined){
       let action: number = parseFloat(stringAction);
+      console.log(input)
+      console.log(action);
       if (input == 0){
         if (action == 1.00){
-          if (currentYCoordinate == 5){
-            if (currentXCoordinate == 4){
-              currentXCoordinate = 1
-            } else {
-              currentXCoordinate += 1
-            }
-          } else if (currentXCoordinate == 6){
+          if (currentXCoordinate == 7){
             currentXCoordinate = 1
-          }
-          else {
-            currentXCoordinate += 1;
+          } else {
+            currentXCoordinate += 1
           }
         } else if (action == -1.00){
-          if (currentYCoordinate == 5){
-            if (currentXCoordinate == 1){
-              currentXCoordinate = 4
-            } else {
-              currentXCoordinate -= 1
-            }
-          } else if (currentXCoordinate == 1){
-            currentXCoordinate = 6
-          }
-          else {
-            currentXCoordinate -= 1;
+          if (currentXCoordinate == 1){
+            currentXCoordinate = 7
+          } else {
+            currentXCoordinate -= 1
           }
         }
       } else if (input == 1){
         if (action == 1.00){
-          if (currentYCoordinate == 4 && (currentXCoordinate == 5 || currentXCoordinate == 6)){
-            currentYCoordinate = 1
-          } else if (currentYCoordinate == 5){
+          if (currentYCoordinate == 4){
             currentYCoordinate = 1
           } else {
             currentYCoordinate += 1
           }
         } else if (action == -1.00){
-          if (currentYCoordinate == 1 && (currentXCoordinate == 5 || currentXCoordinate == 6)){
+          if (currentYCoordinate == 1){
             currentYCoordinate = 4
-          } else if (currentYCoordinate == 1){
-            currentYCoordinate = 5
           } else {
             currentYCoordinate -= 1
           }
         }
       }
+      console.log(`${currentXCoordinate}-${currentYCoordinate}`)
       changeFocusAndLetter(currentXCoordinate, currentYCoordinate)
     }
 };
