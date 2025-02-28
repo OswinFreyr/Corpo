@@ -371,6 +371,12 @@ img {
   min-width: 100%;
 }
 
+.card-answer:hover{
+  filter: grayscale(0%);
+  transition: 0.3s;
+
+}
+
 .cards-answer {
   position:sticky;
   bottom: 20px;
