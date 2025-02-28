@@ -5,6 +5,8 @@ import { bus } from "../scripts/eventBus.js"
 
 const buttonRefReplay = ref<HTMLElement | null>(null)
 const buttonRefNewPlayer = ref<HTMLElement | null>(null)
+const buttonRefSuivant = ref<HTMLElement | null>(null)
+const buttonRefPrecedent = ref<HTMLElement | null>(null)
 let currentButton: string = "replay"
 
 const setButtonRef = (button: any) => (el: any) => {
@@ -12,6 +14,10 @@ const setButtonRef = (button: any) => (el: any) => {
     buttonRefReplay.value = el;
   } else if (button == "newPlayer") {
     buttonRefNewPlayer.value = el
+  } else if (button == "suivant") {
+    buttonRefSuivant.value = el
+  } else if (button == "precedent") {
+    buttonRefPrecedent.value = el
   }
 };
 
@@ -42,6 +48,10 @@ const triggerAction = (input: number, buttonOrAxis: string, stringAction?: strin
             rejouer();
         } else if (currentButton == "newPlayer"){
             newPlayer();
+        } else if (currentButton == "suivant"){
+            next()
+        } else if (currentButton == "precedent"){
+            previous()
         }
       }
     } else if (buttonOrAxis == "axis" && stringAction !== undefined){
@@ -51,11 +61,31 @@ const triggerAction = (input: number, buttonOrAxis: string, stringAction?: strin
         if (action == 1.00 && currentButton == "replay"){
             currentButton = "newPlayer"
             buttonRefNewPlayer.value ? buttonRefNewPlayer.value.focus() : console.error("Button Replay ref not available")
-        } else if (action == -1.00){
+        } else if (action == -1.00 && currentButton == "newPlayer"){
             currentButton = "replay"
-            buttonRefNewPlayer.value ? buttonRefReplay.value.focus() : console.error("Button New Player ref not available")
+            buttonRefNewPlayer.value ? buttonRefReplay.value?.focus() : console.error("Button New Player ref not available")
+        } else if (action == 1.00 && currentButton == "precedent"){
+            currentButton = "suivant"
+            buttonRefPrecedent.value ? buttonRefSuivant.value?.focus() : console.error("Button Suivant ref not available")
+        } else if (action == -1.00 && currentButton == "suivant"){
+            currentButton = "precedent"
+            buttonRefSuivant.value ? buttonRefPrecedent.value?.focus() : console.error("Button Suivant ref not available")
         }
-      } 
+      } else if (input == 1) {
+        if (action == -1.00 && currentButton == "precedent"){
+            currentButton = "replay"
+            buttonRefPrecedent.value ? buttonRefReplay.value?.focus() : console.error("Button New Player ref not available")
+        } else if (action == -1.00 && currentButton == "suivant"){
+            currentButton = "newPlayer"
+            buttonRefSuivant.value ? buttonRefNewPlayer.value?.focus() : console.error("Button Replay ref not available")
+        } else if (action == 1.00 && currentButton == "replay"){
+            currentButton = "precedent"
+            buttonRefReplay.value ? buttonRefPrecedent.value?.focus() : console.error("Button Precedent ref not available")
+        } else if (action == 1.00 && currentButton == "newPlayer"){
+            currentButton = "suivant"
+            buttonRefNewPlayer.value ? buttonRefSuivant.value?.focus() : console.error("Button Suivant ref not available")
+        }
+      }
     }
 };
 
@@ -169,11 +199,11 @@ const next = () => {
               </ul>
           </div>
           <div class="buttons">
-              <button @click="previous" :disabled="currentIndex === 0">
-                  Précédente
+              <button @click="previous"  :ref="setButtonRef('precedent')">
+                  Précédent
               </button>
-              <button @click="next" :disabled="currentIndex === props.historyQuestions.length - 1">
-                  Suivante
+              <button @click="next" :ref="setButtonRef('suivant')">
+                  Suivant
               </button>
           </div>
       </div>

@@ -99,6 +99,14 @@ const switchAnswer = (value: number) => {
 const handleSelectedAnswer = (answer: any) => {
   emit("selectedAnswer", answer);
   joystickInput.value = 0;
+  let cardsLeft: HTMLCollectionOf<Element> = document.getElementsByClassName('card-answer-left');
+  let cardsRight: HTMLCollectionOf<Element> = document.getElementsByClassName('card-answer-right');
+  for (let card of Array.from(cardsRight)){
+    (card as HTMLElement).classList = 'card-answer card-answer-right not-selected-card';
+  }
+  for (let card of Array.from(cardsLeft)){
+    (card as HTMLElement).classList = 'card-answer card-answer-left not-selected-card';
+  }
 };
 
 
