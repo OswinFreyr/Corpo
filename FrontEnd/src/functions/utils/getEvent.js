@@ -58,21 +58,21 @@ export default function getEvent(){
             "environment" : 0
         },
         {
-            "description" : "Marion montre de photos de son chien à l'équipe. Il est vraiment très mignon",
+            "description" : "Marion montre des photos de son chien à l'équipe. Il est vraiment très mignon",
             "treasury" : 0,
             "wellbeing" : 20,
             "productivity" : -20,
             "environment" : 0
         },
         {
-            "description" : "Lucile et Marion on involontairement mis le feu au batîment en jetant leur cigarette dans la corbeille à papier.",
+            "description" : "Lucile et Marion on involontairement mis le feu au batîment en jetant leurs cigarettes dans la corbeille à papier.",
             "treasury" : -10,
             "wellbeing" : 0,
             "productivity" : -10,
             "environment" : -20
         },
         {
-            "description" : "Enora a fait une commande de 10 000 trombones par erreur. NE recrutez jamais d'alternant.",
+            "description" : "Enora a fait une commande de 10 000 trombones par erreur. Ne recrutez jamais d'alternant.",
             "treasury" : -20,
             "wellbeing" : 0,
             "productivity" : 0,

@@ -340,7 +340,7 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
           </div>
 
           <!-- notification bonus-->
-          <div v-if="bonusTriggered" class="bonus" :class="{ show: bonusTriggered }">
+          <div v-if="bonusTriggered" class="bonus bonus-appear" :class="{ show: bonusTriggered }">
             <div style="display: flex; flex-direction: column; gap: 15px;">
               <div style="display: flex; gap: 10px; align-items: center;">
                 <img style="width: 32px;" src="../assets/warn.png" alt="">
@@ -479,6 +479,17 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
   }
 }
 
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 .bonus {
   background-color: #fffee0;
   border: solid 1px #000;
@@ -487,12 +498,17 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
   display: flex;
   flex-direction: column;
   gap: 20px;
-  position: relative;
+  /* position: absolute; */
+  right: 10px;
+  top: 20px;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
-  transform: translateX(100%); 
-  opacity: 0;
-  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+  opacity: 0; 
 }
+
+.bonus-appear {
+  animation: slideInFromRight 0.5s ease-in-out forwards;
+}
+
 
 .bonus.show {
   transform: translateX(0);
