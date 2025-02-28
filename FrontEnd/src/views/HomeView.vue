@@ -13,15 +13,11 @@
   import updateUser from "../api/updateUser.js";
   import getReason from "../functions/utils/getReason.js";
   import getEvent from "../functions/utils/getEvent.js";
-
-  import getEvent from "../functions/utils/getEvent.js";
-
   import ScoreBoard from "../components/scoreboard/ScoreBoard.vue";
   import PostIt from "../components/PostIt.vue";
   import Game from "../components/Game.vue";
   import Pseudo from "../components/Pseudo.vue"
   import ScoreScreen from "../components/ScoreScreen.vue"
-  import HistoryScreen from "../components/HistoryScreen.vue"
 
   import bonusSound from "../../public/9762.mp3"
   // import startSessionSound from "../../public/start-session.mp3"
