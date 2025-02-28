@@ -55,7 +55,6 @@ const triggerAction = (input: number, buttonOrAxis: string, stringAction?: strin
         }
       }
     } else if (buttonOrAxis == "axis" && stringAction !== undefined){
-      console.log("Axis Pressed!")
       let action: number = parseFloat(stringAction);
       if (input == 0){
         if (action == 1.00 && currentButton == "replay"){

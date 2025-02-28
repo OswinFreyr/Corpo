@@ -56,7 +56,6 @@ const processGamepadInput = (gamepad: Gamepad) => {
   for (let i = 0; i < gamepad.axes.length; i++) {
     const axisValue = gamepad.axes[i];
     if (Math.abs(axisValue - previousAxesStates.value[i]) > 0.1) {
-      console.log(`Axis ${i} moved to ${axisValue.toFixed(2)}`);
       if (parseFloat(axisValue.toFixed(2)) !== 0.0){
         bus.emit('gamepadInput', { axis: i, action: axisValue.toFixed(2)})
       }
@@ -208,7 +207,6 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
     }
 
     currentUser.value.reason.reason = getReason(randomGauge, gaugeValue);
-    console.log(currentUser.value.reason.reason)
     currentUser.value.score = currentScore.value;
 
     let tempUser = await askOneUser(currentUser.value.id);

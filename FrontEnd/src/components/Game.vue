@@ -27,11 +27,9 @@ const localQuestions: any = computed(() => {
 const triggerAction = (input: number, buttonOrAxis: string, stringAction?: string) => {
     if (buttonOrAxis == "button"){
       if (input == 1){
-        console.log(localQuestions)
         handleSelectedAnswer(localQuestions.value[props.compteurQuestions].answers[joystickInput.value -1])
       }
     } else if (buttonOrAxis == "axis" && stringAction !== undefined){
-      console.log("Axis Pressed!")
       let action: number = parseFloat(stringAction);
       if (input == 0){
         if (action == 1.00){
