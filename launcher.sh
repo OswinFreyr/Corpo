@@ -16,7 +16,7 @@ cd "$HOME/EfreiArcade/Corpo/FrontEnd" || exit
 echo "Installing dependencies for FrontEnd..."
 npm install
 echo "Launching FrontEnd..."
-npm run build &
+npm run dev &
 echo "FrontEnd is running at http://localhost:5173"
 
 # Wait for background jobs to finish
