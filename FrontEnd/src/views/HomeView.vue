@@ -314,7 +314,7 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
     </div>
 
     <!-- questions reponses -->
-    <div>
+    <div class="middle">
       <Game :questions="questions" v-if="playing==1" :tuto="tuto" @selectedAnswer="handleSelectedAnswer" :compteurQuestions="compteurQuestions" />
       <ScoreScreen v-if="playing==2" :playing="playing" @updateScorePlaying="handleScorePlaying" :player="currentUser" @updateScoreCurrentUser="handleScorePlayer" :historyAnswers="historyAnswers" :historyQuestions="historyQuestions" />
     </div>
@@ -394,6 +394,11 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
   align-items: start; 
 }
 
+.middle{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .post-its {
   display: flex;
