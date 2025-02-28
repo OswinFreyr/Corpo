@@ -3,8 +3,12 @@ import { defineProps, defineEmits, computed, onMounted, watch, onUnmounted } fro
 import Answer from "./Answer.vue";
 import { ref } from 'vue';
 import { bus } from "../scripts/eventBus.js"
+import type { List } from "postcss/lib/list";
 
-
+const answerRef1 = ref(null);
+const answerRef2 = ref(null);
+const answerRef3 = ref(null);
+const answerRef4 = ref(null);
 
 const props = defineProps<{
   questions: { question: string; answers: any[]; productivity: number; wellbeing: number; treasury: number; environment: number; role: { link: string } }[];
@@ -63,6 +67,33 @@ let joystickInput = ref(0);
 
 const switchAnswer = (value: number) => {
   joystickInput.value = value;
+  let cardsLeft: HTMLCollectionOf<Element> = document.getElementsByClassName('card-answer-left');
+  let cardsRight: HTMLCollectionOf<Element> = document.getElementsByClassName('card-answer-right');
+  if (value == 1){
+    if (props.tuto){
+      answerRef1.value?.$refs.buttonRef.focus();
+    } else {
+      answerRef3.value?.$refs.buttonRef.focus();
+    }
+    for (let card of Array.from(cardsLeft)){
+      (card as HTMLElement).classList= 'card-answer card-answer-left selected-card';
+    }
+    for (let card of Array.from(cardsRight)){
+      (card as HTMLElement).classList = 'card-answer card-answer-right not-selected-card';
+    }
+  } else if (value == 2) {
+    if (props.tuto){
+      answerRef2.value?.$refs.buttonRef.focus();
+    } else {
+      answerRef4.value?.$refs.buttonRef.focus();
+    }
+    for (let card of Array.from(cardsLeft)){
+      (card as HTMLElement).classList = 'card-answer card-answer-left not-selected-card';
+    }
+    for (let card of Array.from(cardsRight)){
+      (card as HTMLElement).classList = 'card-answer card-answer-right selected-card';
+    }
+  }
 };
 
 const handleSelectedAnswer = (answer: any) => {
@@ -114,15 +145,51 @@ watch(currentQuestion, (newQuestion) => {
   </div>
 
   <div class="rowing">
-    <img src="/src/assets/left.png" class="arrow left-arrow" @click="switchAnswer(1)"></img>
     <div class="cards-answer">
 
-      <div v-show="joystickInput===0" class="choose-answer">
+
+      <div class="card-answer card-answer-left not-selected-card">
+          <Answer
+            v-if="tuto && questionsTuto.length > compteurQuestions && questionsTuto[compteurQuestions]?.answers?.length > 0"
+            :answer="questionsTuto[compteurQuestions].answers[0]"
+            @selectedAnswer="handleSelectedAnswer"
+            ref="answerRef1"
+            questionNumber="1"
+          />
+          <Answer
+            v-else-if="props.questions.length > compteurQuestions && props.questions[compteurQuestions]?.answers?.length > 0"
+            :answer="props.questions[compteurQuestions].answers[0]"
+            @selectedAnswer="handleSelectedAnswer"
+            ref="answerRef3"
+            questionNumber="1"
+          />
+        </div>
+
+      <div class="choose-answer">
         <img src="../assets/clippy.gif" alt="Clippy" class="clippy">
+        <img src="/src/assets/left.png" class="arrow left-arrow" @click="switchAnswer(1)"></img>
         <span>Choisissez une réponse</span>
+        <img src="/src/assets/right.png" class="arrow right-arrow" @click="switchAnswer(2)"></img>
       </div>
+
+      <div class="card-answer card-answer-right not-selected-card">
+          <Answer
+            v-if="tuto && questionsTuto.length > compteurQuestions && questionsTuto[compteurQuestions]?.answers?.length > 1"
+            :answer="questionsTuto[compteurQuestions].answers[1]"
+            @selectedAnswer="handleSelectedAnswer"
+            ref="answerRef2"
+            questionNumber="2"
+          />
+          <Answer
+            v-else-if="props.questions.length > compteurQuestions && props.questions[compteurQuestions]?.answers?.length > 1"
+            :answer="props.questions[compteurQuestions].answers[1]"
+            @selectedAnswer="handleSelectedAnswer"
+            ref="answerRef4"
+            questionNumber="2"
+          />
+        </div>
   
-      <div v-show="joystickInput !== 0"  class="answers-wrapper " :style="{ transform: `translateX(${joystickInput === 1 ? '0%' : '-100%'})` }">
+      <!-- <div v-show="joystickInput !== 0"  class="answers-wrapper " :style="{ transform: `translateX(${joystickInput === 1 ? '0%' : '-100%'})` }">
         <div class="card-answer">
           <Answer
             v-if="tuto && questionsTuto.length > compteurQuestions && questionsTuto[compteurQuestions]?.answers?.length > 0"
@@ -148,9 +215,8 @@ watch(currentQuestion, (newQuestion) => {
             @selectedAnswer="handleSelectedAnswer"
           />
         </div>
-      </div>
+      </div> -->
     </div>
-    <img src="/src/assets/right.png" class="arrow right-arrow" @click="switchAnswer(2)"></img>
   </div>
 </template>
 
@@ -187,6 +253,11 @@ watch(currentQuestion, (newQuestion) => {
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
 
   animation: floatAnimation 4s ease-in-out infinite;
+
+  min-height: 150px; 
+  max-width: 100%;
+  /* overflow: hidden; */
+  /* padding-bottom: 15px; */
 }
 
 .question::before {
@@ -295,16 +366,13 @@ img {
 }
 
 .cards-answer {
-  position: absolute;
+  position:sticky;
   bottom: 20px;
-   left: 50%;
-  transform: translateX(-50%);
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   justify-content: center;
   width: 100%;
   max-width: 500px;
-  height: 150px; 
   margin: auto;
 }
 
@@ -322,6 +390,14 @@ img {
   align-items: center;
   min-width: 100%;
   height: 100%; 
+}
+
+.not-selected-card {
+  filter: grayscale(100%);
+}
+
+.selected-card {
+  animation: floatAnimation 4s ease-in-out infinite;
 }
 
 
@@ -355,6 +431,7 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transform: translateY(-60px);
   /* width: 100%; */
 }
 .arrow {
@@ -386,11 +463,12 @@ img {
 .choose-answer{
   display: flex;
   align-items: center;
+  min-width: 50%;
+  text-align: center;
 }
 
-.choose-answer>span {
-  padding: 40px;
-  min-width: 100%;
+.choose-answer {
+  min-width: 50%;
   background-color: #f9f2b8;
   box-shadow: 1px 2.5px 1px #c7c292;
   position: relative;
@@ -406,10 +484,25 @@ img {
   background-size: 100% 20px;
 }
 
+.left-arrow {
+  padding-left: 1rem;
+  min-width: 17%;
+}
+
+.right-arrow {
+  padding-right: 1rem;
+  min-width: 17%;
+}
+
+.choose-answer>span {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
 .clippy {
   position: absolute;
-  top: 5px;
-  left:100px;
+  top: -25px;
+  left: -25px;
   width: 50px; 
   transform: rotate(-15deg);
   z-index: 100;
