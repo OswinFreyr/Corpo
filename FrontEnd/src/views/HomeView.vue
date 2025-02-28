@@ -22,7 +22,7 @@
   import HistoryScreen from "../components/HistoryScreen.vue"
 
   import bonusSound from "../../public/9762.mp3"
-  import startSessionSound from "../../public/start-session.mp3"
+  // import startSessionSound from "../../public/start-session.mp3"
   import endSessionSound from "../../public/end-session.mp3"
 
   const audioBonus = new Audio(bonusSound); 
