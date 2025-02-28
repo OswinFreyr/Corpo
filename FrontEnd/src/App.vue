@@ -8,10 +8,11 @@
   <div class="app-container">
     
     <Header/>
+    <!--
     <audio autoplay loop>
       <source src="/public/euromir.mp3" type="audio/mpeg">
       Votre navigateur ne supporte pas l'élément audio.
-    </audio>
+    </audio> -->
 
     <RouterView />
 
