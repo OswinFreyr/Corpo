@@ -381,6 +381,7 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
     </div>
   </div>
 
+  
 
 </template>
 
