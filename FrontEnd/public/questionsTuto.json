@@ -1,49 +1,49 @@
 [
-    { 
-      "question": "Bonjour je suis Laetitia la secrétaire, souhaitez vous des explications sur comment gérer votre entreprise ?", 
-      "answers": [
-        {
-          "answer": "Oui"
-        },
-        {
-          "answer": "Non"
-        }
-      ]
-    },
-    { 
-      "question": "Pour sélectionner votre décision, bougez votre selecteur sur le choix que vous souhaitez. Avez vous compris ?",
-      "answers": [
-        {
-          "answer": "Oui"
-        },
-        {
-          "answer": "Non",
-          "wellbeing": -2
-        }
-      ]
-    },
-    { 
-      "question": "Chaque décision influe sur l'état de votre entreprise, par exemple souhaitez vous un café ?",
-      "answers": [
-        {
-          "answer": "Oui",
-          "productivity": 30
-        },
-        {
-          "answer": "Non",
-          "productivity": -20
-        }
-      ]
-    },
-    {
-      "question": "Voilà, vous avez tout en main. Essayer de ne pas couler l'entreprise le plus longtemps possible, bonne chance !",
-      "answers":[
-        {
-          "answer": "Au travail !"
-        },
-        {
-          "answer": "C'est parti !"
-        }
-      ]
-    }
-  ]
+  {
+    "question": "Bonjour je suis Laetitia la secrétaire, souhaitez-vous que je vous fasse un débrief de votre journée ?",
+    "answers": [
+      {
+        "answer": "Oui"
+      },
+      {
+        "answer": "Non"
+      }
+    ]
+  },
+  {
+    "question": "Vous avez pas mal de doléances à traiter pour aujourd'hui. Allez à droite ou à gauche pour voir vos différentes options de réponse. Avez-vous compris ?",
+    "answers": [
+      {
+        "answer": "Oui"
+      },
+      {
+        "answer": "Non",
+        "wellbeing": -2
+      }
+    ]
+  },
+  {
+    "question": "Chaque décision influe sur l'état de votre entreprise que vous pouvez consulter grâce aux quatres indicateurs situés à gauche de l'écran, par exemple : Souhaitez-vous un café ?",
+    "answers": [
+      {
+        "answer": "Oui",
+        "productivity": 30
+      },
+      {
+        "answer": "Non",
+        "productivity": -20
+      }
+    ]
+  },
+  {
+    "question": "C'est tout pour moi. Essayez de ne pas couler l'entreprise le plus longtemps possible ( je tiens à mon job ) !", 
+    "answers": [
+      {
+        "answer": "Au travail !"
+      },
+      {
+        "answer": "C'est parti !"
+      }
+    ]
+  }
+]

@@ -12,12 +12,20 @@
   import askOneQuestion from "../api/askOneQuestion.js"
   import updateUser from "../api/updateUser.js";
   import getReason from "../functions/utils/getReason.js";
+  import getEvent from "../functions/utils/getEvent.js";
   import ScoreBoard from "../components/scoreboard/ScoreBoard.vue";
   import PostIt from "../components/PostIt.vue";
   import Game from "../components/Game.vue";
   import Pseudo from "../components/Pseudo.vue"
   import ScoreScreen from "../components/ScoreScreen.vue"
-  import HistoryScreen from "../components/HistoryScreen.vue"
+
+  import bonusSound from "../../public/9762.mp3"
+  // import startSessionSound from "../../public/start-session.mp3"
+  import endSessionSound from "../../public/end-session.mp3"
+
+  const audioBonus = new Audio(bonusSound); 
+  const audioEndSession = new Audio(endSessionSound);
+
 
   let playing = ref(0);
   let tuto = true;
@@ -137,6 +145,34 @@ const handleScorePlayer = (newValue:{id:number; username:string; score:number; r
   currentUser.value = newValue;
 };
 
+let lastBonusDay = 0;
+let randomBonus = ref();
+let bonusTriggered = ref(false);
+
+const handleBonusEvent = () => {
+  if (currentScore.value >= 5 && currentScore.value - lastBonusDay >= 7) {
+    if (Math.random() < 0.5) { 
+      randomBonus.value = getEvent();
+      bonusTriggered.value = true;
+      audioBonus.play();
+
+      setTimeout(() => {
+        productivity.value += randomBonus.value.productivity;
+        wellbeing.value += randomBonus.value.wellbeing;
+        treasury.value += randomBonus.value.treasury;
+        environment.value += randomBonus.value.environment;
+      }, 5000); 
+      
+      
+      lastBonusDay = currentScore.value;
+
+      setTimeout(() => {
+        bonusTriggered.value = false;
+      }, 20000); 
+    }
+  }
+};
+
 const handleSelectedAnswer = async (answer: { answer:string,productivity: number; wellbeing: number; treasury: number; environment: number ;reason:string}) => {
   if (tuto){
     if (compteurQuestions.value === 0){
@@ -176,6 +212,9 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
       tuto = false;
     }
   } else  {
+
+    handleBonusEvent();
+    
     let questionTemp = await askOneQuestion(compteurQuestions.value)
     historyQuestions.push(questionTemp);
     productivity.value += answer.productivity;
@@ -222,6 +261,7 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
     players.value = await askUsers();
     compteurQuestions.value = 0;
     playing.value = 2;
+    audioEndSession.play();
     tuto = true;
   }
 
@@ -259,7 +299,7 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
 
       <div class="post-it-container">
         <img src="../assets/clippy.gif" alt="Clippy" class="clippy">
-        <PostIt title="Économie" :description="getDescription(treasury, 'treasury')" :value="treasury" image="src/assets/treasury.png" />
+        <PostIt title="Trésorerie" :description="getDescription(treasury, 'treasury')" :value="treasury" image="src/assets/treasury.png" />
       </div>
 
       <PostIt title="Bien-être" :description="getDescription(wellbeing, 'wellbeing')" :value="wellbeing" image="src/assets/wellbeing.png" />
@@ -296,6 +336,29 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
               <div class="score-value-container">
                 <p class="highscore"> <span class="highlight">{{ players[0].username }}</span> est meilleur que vous avec <span class="highlight">{{ players[0].score }}</span> jours tenus !</p>
               </div>
+            </div>
+          </div>
+
+          <!-- notification bonus-->
+          <div v-if="bonusTriggered" class="bonus bonus-appear" :class="{ show: bonusTriggered }">
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+              <div style="display: flex; gap: 10px; align-items: center;">
+                <img style="width: 32px;" src="../assets/warn.png" alt="">
+                <p style="font-weight: bold; font-size: medium;">Alerte</p>
+              </div>
+              <span style="font-size: medium;">
+                  {{ randomBonus.description }}
+              </span>
+            </div>
+            <div class="bonus-jauges">
+              <ul>
+                <li>Trésorerie : {{ randomBonus.treasury }}</li>
+                <li>Bien-être : {{ randomBonus.wellbeing }}</li>
+              </ul>
+              <ul>
+                <li>Productivité : {{ randomBonus.productivity }}</li>
+                <li>Environnement : {{ randomBonus.environment }}</li>
+              </ul>
             </div>
           </div>
       </div>
@@ -346,8 +409,10 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
 
 .score-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 5px;
+  justify-content: center;
+  gap: 20px;
 }
 
 @keyframes scoreIncrease {
@@ -392,6 +457,77 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
 
 .highlight{
   font-weight: 700;
+}
+
+.bonus>p{
+  font-weight: bold;
+  font-size: medium;
+}
+
+.bonus>span{
+  font-size: medium;
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.bonus {
+  background-color: #fffee0;
+  border: solid 1px #000;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  /* position: absolute; */
+  right: 10px;
+  top: 20px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+  opacity: 0; 
+}
+
+.bonus-appear {
+  animation: slideInFromRight 0.5s ease-in-out forwards;
+}
+
+
+.bonus.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.bonus-jauges {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.bonus-jauges>ul{
+  list-style: none;
+}
+
+.bonus-jauges>ul>li{
+  font-weight: bold;
+
 }
 
 </style>

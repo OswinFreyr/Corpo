@@ -29,7 +29,7 @@ export default function getDescription(value,type){
         }[type];
       } else {
         return {
-          treasury: "Elon Musk, sors de ce corps !",
+          treasury: "Bernard Arnault, sors de ce corps !",
           wellbeing: "Les employés chantent du Disney en travaillant.",
           productivity: "On dirait une armée de robots !",
           environment: "On vient d'être rachetés par Greenpeace."

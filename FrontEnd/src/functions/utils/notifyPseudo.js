@@ -17,7 +17,7 @@ export default function notifyPsesudo(pseudo){
             case "ENORA" : 
                 return "On bloque ce pseudo pour te remercier pour le budget. MERCI !! ";
             default:
-                return "Je ne sais pas quoi dire. Changez de pseudo";
+                return "Merci de mettre un pseudo non offensant entre 3 et 10 charactères.";
         }
     }
     else {
