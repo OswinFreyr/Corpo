@@ -294,7 +294,7 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
             </div>
             <div class="window-body" style="padding-left: 25px;">
               <div class="score-value-container">
-                <p class="score">{{ players[0].username }} a fait un plus haut score avec {{ players[0].score }} jours !</p>
+                <p class="highscore"> <span class="highlight">{{ players[0].username }}</span> est meilleur que vous avec <span class="highlight">{{ players[0].score }}</span> jours tenus !</p>
               </div>
             </div>
           </div>
@@ -384,6 +384,14 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
   display: flex;
   flex-direction: row;
   gap: 20px;
+}
+
+.highscore{
+  font-size: 15px;
+}
+
+.highlight{
+  font-weight: 700;
 }
 
 </style>
