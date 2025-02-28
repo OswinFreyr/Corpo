@@ -1,13 +1,29 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref, watch } from "vue";
 
 const props = defineProps<{
   value: number;
 }>();
+let valeur = ref(50)
 
-const progressWidth = computed(() => `${props.value}%`);
+watch(() => props.value, (newValue) => {
+  if (newValue < 0) {
+    valeur.value = 0;
+  } else if (newValue > 100) {
+    valeur.value = 100;
+  } else {
+    valeur.value = newValue;
+  }
+});
+const progressWidth = computed(() => `${valeur.value}%`);
 
 const progressGradient = computed(() => {
+  if(props.value < 0){
+    valeur.value = 0
+  }
+  if(props.value > 100){
+    valeur.value = 100
+  }
   if (props.value <= 10 || props.value >= 90) {
     return "linear-gradient(to bottom, #ff8080, #ff4d4d)"; // rouge
   }
@@ -26,7 +42,7 @@ const progressGradient = computed(() => {
       :style="{ width: progressWidth, '--progress-gradient': progressGradient }"
       ></div>
     </div>
-    <p class="valeur">{{ value }}%</p>
+    <p class="valeur">{{ valeur }}%</p>
   </div>
 </template>
 
