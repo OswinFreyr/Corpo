@@ -42,6 +42,41 @@ export default function getEvent(){
             "wellbeing" : -10,
             "productivity" : 50,
             "environment" : 0
+        },
+        {
+            "description" : "Aujourd'hui c'est jour de grève, vos employés vous trahissent.",
+            "treasury" : -10,
+            "wellbeing" : 10,
+            "productivity" : -30,
+            "environment" : 10
+        },
+        {
+            "description" : "Lucile ramène des muffins faits maison, vous avez fait l'erreur d'y goûter...",
+            "treasury" : 0,
+            "wellbeing" : -20,
+            "productivity" : -10,
+            "environment" : 0
+        },
+        {
+            "description" : "Marion montre de photos de son chien à l'équipe. Il est vraiment très mignon",
+            "treasury" : 0,
+            "wellbeing" : 20,
+            "productivity" : -20,
+            "environment" : 0
+        },
+        {
+            "description" : "Lucile et Marion on involontairement mis le feu au batîment en jetant leur cigarette dans la corbeille à papier.",
+            "treasury" : -10,
+            "wellbeing" : 0,
+            "productivity" : -10,
+            "environment" : -20
+        },
+        {
+            "description" : "Enora a fait une commande de 10 000 trombones par erreur. NE recrutez jamais d'alternant.",
+            "treasury" : -20,
+            "wellbeing" : 0,
+            "productivity" : 0,
+            "environment" : 0
         }
 
         

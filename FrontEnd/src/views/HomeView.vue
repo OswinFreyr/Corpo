@@ -171,7 +171,7 @@ const handleBonusEvent = () => {
 
       setTimeout(() => {
         bonusTriggered.value = false;
-      }, 10000); 
+      }, 20000); 
     }
   }
 };
@@ -340,11 +340,28 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
               </div>
             </div>
           </div>
+
+          <!-- notification bonus-->
           <div v-if="bonusTriggered" class="bonus" :class="{ show: bonusTriggered }">
-            <p>Alerte</p>
-            <span>
-                {{ randomBonus.description }}
-            </span>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+              <div style="display: flex; gap: 10px; align-items: center;">
+                <img style="width: 32px;" src="../assets/warn.png" alt="">
+                <p style="font-weight: bold; font-size: medium;">Alerte</p>
+              </div>
+              <span style="font-size: medium;">
+                  {{ randomBonus.description }}
+              </span>
+            </div>
+            <div class="bonus-jauges">
+              <ul>
+                <li>Trésorerie : {{ randomBonus.treasury }}</li>
+                <li>Bien-être : {{ randomBonus.wellbeing }}</li>
+              </ul>
+              <ul>
+                <li>Productivité : {{ randomBonus.productivity }}</li>
+                <li>Environnement : {{ randomBonus.environment }}</li>
+              </ul>
+            </div>
           </div>
       </div>
       <ScoreBoard v-if="playing == 2" :players="players"/>
@@ -484,5 +501,19 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
   opacity: 1;
 }
 
+.bonus-jauges {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.bonus-jauges>ul{
+  list-style: none;
+}
+
+.bonus-jauges>ul>li{
+  font-weight: bold;
+
+}
 
 </style>

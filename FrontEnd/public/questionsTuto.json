@@ -23,7 +23,7 @@
     ]
   },
   {
-    "question": "Chaque décision influe sur l'état de votre entreprise, par exemple : Souhaitez-vous un café ?",
+    "question": "Chaque décision influe sur l'état de votre entreprise que vous pouvez consulter grâce aux quatres indicateurs situés à gauche de l'écran, par exemple : Souhaitez-vous un café ?",
     "answers": [
       {
         "answer": "Oui",
