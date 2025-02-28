@@ -208,11 +208,13 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
     }
 
     currentUser.value.reason.reason = getReason(randomGauge, gaugeValue);
+    console.log(currentUser.value.reason.reason)
     currentUser.value.score = currentScore.value;
 
     let tempUser = await askOneUser(currentUser.value.id);
     if (tempUser.score > currentScore.value) {
       currentUser.value.score = tempUser.score;
+      currentUser.value.reason.reason = tempUser.reason.reason
     }
 
     await updateUser(currentUser.value.id, {
