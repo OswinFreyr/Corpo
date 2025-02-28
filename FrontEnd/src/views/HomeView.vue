@@ -9,6 +9,7 @@
   import askQuestions from "../api/askQuestions.js";
   import askUsers from "../api/askUsers.js"
   import askOneUser from "../api/askOneUser.js"
+  import askOneQuestion from "../api/askOneQuestion.js"
   import updateUser from "../api/updateUser.js";
   import getReason from "../functions/utils/getReason.js";
   import ScoreBoard from "../components/scoreboard/ScoreBoard.vue";
@@ -16,6 +17,7 @@
   import Game from "../components/Game.vue";
   import Pseudo from "../components/Pseudo.vue"
   import ScoreScreen from "../components/ScoreScreen.vue"
+  import HistoryScreen from "../components/HistoryScreen.vue"
 
   let playing = ref(0);
   let tuto = true;
@@ -29,8 +31,8 @@
   let treasury = ref(50);
   let compteurQuestions = ref(0);
   let players = ref<{username:string, score: number, reason: {reason:string}}[]>([]);
-  let historyQuestions = [];
-  let historyAnswers = [];
+  let historyQuestions = <{ question: string; answers: any[]; productivity: number; wellbeing: number; treasury: number; environment: number; role: { link: string } }[]>[];
+  let historyAnswers = <{ answer:string,productivity: number; wellbeing: number; treasury: number; environment: number ;reason:string}[]>[];
 
 
   const previousButtonStates = ref(new Array(17).fill(false));
@@ -175,15 +177,13 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
       tuto = false;
     }
   } else  {
-    console.log("quest", compteurQuestions.value)
-    historyQuestions.push(compteurQuestions.value);
-    console.log("historyQuestions: " + historyQuestions[historyQuestions.length -1]);
+    let questionTemp = await askOneQuestion(compteurQuestions.value)
+    historyQuestions.push(questionTemp);
     productivity.value += answer.productivity;
     wellbeing.value += answer.wellbeing;
     treasury.value += answer.treasury;
     environment.value += answer.environment;
     historyAnswers.push(answer);
-    console.log("historyAnswers: " + historyAnswers[historyAnswers.length -1].answer);
     if (
         productivity.value <= 0 || wellbeing.value <= 0 || treasury.value <= 0 || environment.value <= 0 ||
         productivity.value >= 100 || wellbeing.value >= 100 || treasury.value >= 100 || environment.value >= 100
@@ -270,7 +270,7 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
     <!-- questions reponses -->
     <div>
       <Game :questions="questions" v-if="playing==1" :tuto="tuto" @selectedAnswer="handleSelectedAnswer" :compteurQuestions="compteurQuestions" />
-      <ScoreScreen v-if="playing==2" :playing="playing" @updateScorePlaying="handleScorePlaying" :player="currentUser" @updateScoreCurrentUser="handleScorePlayer" />
+      <ScoreScreen v-if="playing==2" :playing="playing" @updateScorePlaying="handleScorePlaying" :player="currentUser" @updateScoreCurrentUser="handleScorePlayer" :historyAnswers="historyAnswers" :historyQuestions="historyQuestions" />
     </div>
     
     <!-- scoreboard -->
