@@ -14,6 +14,8 @@
   import getReason from "../functions/utils/getReason.js";
   import getEvent from "../functions/utils/getEvent.js";
 
+  import getEvent from "../functions/utils/getEvent.js";
+
   import ScoreBoard from "../components/scoreboard/ScoreBoard.vue";
   import PostIt from "../components/PostIt.vue";
   import Game from "../components/Game.vue";
