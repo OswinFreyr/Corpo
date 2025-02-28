@@ -27,11 +27,9 @@ const localQuestions: any = computed(() => {
 const triggerAction = (input: number, buttonOrAxis: string, stringAction?: string) => {
     if (buttonOrAxis == "button"){
       if (input == 1){
-        console.log(localQuestions)
         handleSelectedAnswer(localQuestions.value[props.compteurQuestions].answers[joystickInput.value -1])
       }
     } else if (buttonOrAxis == "axis" && stringAction !== undefined){
-      console.log("Axis Pressed!")
       let action: number = parseFloat(stringAction);
       if (input == 0){
         if (action == 1.00){
@@ -99,6 +97,14 @@ const switchAnswer = (value: number) => {
 const handleSelectedAnswer = (answer: any) => {
   emit("selectedAnswer", answer);
   joystickInput.value = 0;
+  let cardsLeft: HTMLCollectionOf<Element> = document.getElementsByClassName('card-answer-left');
+  let cardsRight: HTMLCollectionOf<Element> = document.getElementsByClassName('card-answer-right');
+  for (let card of Array.from(cardsRight)){
+    (card as HTMLElement).classList = 'card-answer card-answer-right not-selected-card';
+  }
+  for (let card of Array.from(cardsLeft)){
+    (card as HTMLElement).classList = 'card-answer card-answer-left not-selected-card';
+  }
 };
 
 
@@ -363,6 +369,12 @@ img {
   justify-content: center;
   align-items: center;
   min-width: 100%;
+}
+
+.card-answer:hover{
+  filter: grayscale(0%);
+  transition: 0.3s;
+
 }
 
 .cards-answer {

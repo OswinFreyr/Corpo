@@ -19,16 +19,25 @@ const progressGradient = computed(() => {
 </script>
 
 <template>
+  <div class="all-bar">
     <div class="xp-progress-bar">
       <div
-        class="xp-progress-fill"
-        :style="{ width: progressWidth, '--progress-gradient': progressGradient }"
+      class="xp-progress-fill"
+      :style="{ width: progressWidth, '--progress-gradient': progressGradient }"
       ></div>
     </div>
-  </template>
-  
+    <p class="valeur">{{ value }}%</p>
+  </div>
+</template>
 
 <style scoped>
+.all-bar{
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+}
+
 .xp-progress-bar {
   width: 200px;
   height: 14px;
@@ -53,6 +62,20 @@ const progressGradient = computed(() => {
       transparent 15px
     ), 
     var(--progress-gradient); 
+}
+
+.valeur {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Tahoma;
+  font-weight: bold;
+  /* height: 14px;
+  width: 40px;
+  background: #fff;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.2); */
 }
 
 </style>
