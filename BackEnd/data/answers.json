@@ -312,6 +312,19 @@
 	{"answer": "Oui, un canal de communication dédié renforcera le sentiment d'appartenance et la satisfaction des travailleurs intérimaires.", "wellbeing": 20, "treasury": -10, "productivity": 15, "environment": 5, "reasonId": 1, "questionId": 149},
 	{"answer": "Non, le temps et les ressources nécessaires pour maintenir un tel canal pourraient être mieux utilisés ailleurs.", "wellbeing": -20, "treasury": 10, "productivity": -15, "environment": -5, "reasonId": 1, "questionId": 149},
 	{"answer": "Oui, un programme spécifique de fidélisation augmente notre réputation en tant qu'employeur respectueux et attractif pour tous types de travailleurs.", "wellbeing": 10, "treasury": -5, "productivity": 5, "environment": 10, "reasonId": 1, "questionId": 150},
-	{"answer": "Non, cela pourrait créer des attentes irréalistes parmi les travailleurs temporaires qui pourraient s'attendre à des avantages semblables à ceux des permanents, menant à des frustrations.", "wellbeing": -10, "treasury": 5, "productivity": -5, "environment": -10, "reasonId": 1, "questionId": 150}
+	{"answer": "Non, cela pourrait créer des attentes irréalistes parmi les travailleurs temporaires qui pourraient s'attendre à des avantages semblables à ceux des permanents, menant à des frustrations.", "wellbeing": -10, "treasury": 5, "productivity": -5, "environment": -10, "reasonId": 1, "questionId": 150},
+
+
+	{"answer": "Super idée !", "wellbeing": -15, "treasury": 0, "productivity": -5, "environment": 0, "reasonId": 1, "questionId": 151},
+	{"answer": "Non,je ne veux pas embaucher Sardoche", "wellbeing": 10, "treasury": 0, "productivity": 0, "environment": 0, "reasonId": 1, "questionId": 151},
+	{"answer": "Oui je pense que c'est une technologie d'avenir !", "wellbeing": -15, "treasury": -5, "productivity": -5, "environment": 0, "reasonId": 1, "questionId": 152},
+	{"answer": "Non, ça ne devrait même pas exister.", "wellbeing": 0, "treasury": 0, "productivity": 0, "environment": 0, "reasonId": 1, "questionId": 152},
+	{"answer": "Bien sûr !", "wellbeing": 10, "treasury": 0, "productivity": -10, "environment": 0, "reasonId": 1, "questionId": 153},
+	{"answer": "Non, je tiens à garder mon tapis intact...", "wellbeing": 0, "treasury": 0, "productivity": 5, "environment": 0, "reasonId": 1, "questionId": 153},
+	{"answer": "Ce serait malhonnête.. Oui", "wellbeing": -15, "treasury": 10, "productivity": -5, "environment": 0, "reasonId": 1, "questionId": 154},
+	{"answer": "Je reste droit(e) dans mes baskets. (J'ai peur du fisc)", "wellbeing": 5, "treasury": 0, "productivity": 0, "environment": 0, "reasonId": 1, "questionId": 154},
+	{"answer": "Bonne idée !", "wellbeing": -5, "treasury": 10, "productivity": 0, "environment": -10, "reasonId": 1, "questionId": 155},
+	{"answer": "Je ne suis pas sûr(e) que ce soit la meilleure chose à faire...", "wellbeing": 0, "treasury": -5, "productivity": 5, "environment": 5, "reasonId": 1, "questionId": 155}
+
 
 ]
