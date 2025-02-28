@@ -21,5 +21,6 @@ import "xp.css/dist/XP.css";
     left: 0;
     width: 100%;
     z-index: 1000;
+    padding:0;
     }
 </style>

@@ -116,6 +116,11 @@ onMounted(async () => {
     }
 });
 
+const bestPlayer = computed(() => {
+    return players.value.length > 0 ? players.value[0] : { username: "Aucun joueur", score: 0, reason: {reason: "Pas de data"} };
+});
+
+
 onUnmounted(() => {
   if (rafId !== null) {
     cancelAnimationFrame(rafId);
@@ -173,6 +178,8 @@ const handleBonusEvent = () => {
   }
 };
 
+
+
 const handleSelectedAnswer = async (answer: { answer:string,productivity: number; wellbeing: number; treasury: number; environment: number ;reason:string}) => {
   if (tuto){
     if (compteurQuestions.value === 0){
@@ -214,7 +221,6 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
   } else  {
 
     handleBonusEvent();
-    
     let questionTemp = await askOneQuestion(compteurQuestions.value)
     historyQuestions.push(questionTemp);
     productivity.value += answer.productivity;
@@ -326,15 +332,24 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
               </div>
             </div>
 
-            <div class="window-body" style="padding-left: 25px;">
+            <div class="window-body" style="padding-left: 10px;">
               <div class="score-value-container">
                 <h2 class="score">{{ currentScore }}</h2>
               </div>
               <h2 class="days-label">jours</h2>
             </div>
-            <div class="window-body" style="padding-left: 25px;">
-              <div class="score-value-container">
-                <p class="highscore"> <span class="highlight">{{ players[0].username }}</span> est meilleur que vous avec <span class="highlight">{{ players[0].score }}</span> jours tenus !</p>
+            <div class="window-body" style="padding-left: 10px;">
+              <!-- <div class="score-value-container" v-if="(players[0]?.score ?? 0) > (currentUser?.score ?? 0)">
+                <p class="highscore"> <span class="highlight">{{ players[0].username }}</span> est le meilleur entrepreneur avec <span class="highlight">{{ players[0].score }}</span> jours tenus !</p>
+              </div> -->
+              <div class="score-value-container" v-if="bestPlayer.score > currentScore">
+                <p class="highscore">
+                    <span class="highlight">{{ bestPlayer.username }}</span> est le meilleur entrepreneur avec
+                    <span class="highlight">{{ bestPlayer.score }}</span> jours tenus !
+                </p>
+              </div>
+              <div class="score-value-container" v-else>
+                <p class="highscore"> <span class="highlight">Vous êtes le meilleur entrepreneur !</span> (pour l'instant) </p>
               </div>
             </div>
           </div>
