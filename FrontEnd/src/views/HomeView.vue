@@ -182,6 +182,8 @@ const handleBonusEvent = () => {
 
 const handleSelectedAnswer = async (answer: { answer:string,productivity: number; wellbeing: number; treasury: number; environment: number ;reason:string}) => {
   if (tuto){
+    historyAnswers.length = 0;
+    historyQuestions.length = 0;
     if (compteurQuestions.value === 0){
       if (answer.answer === "Non") {
         currentScore.value++;
@@ -381,7 +383,7 @@ const handleSelectedAnswer = async (answer: { answer:string,productivity: number
     </div>
   </div>
 
-  
+
 
 </template>
 

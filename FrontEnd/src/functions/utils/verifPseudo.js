@@ -92,8 +92,8 @@ export default function verifPseudo(pseudo) {
       "rape", "rapi", "rapi", "rectum", "cowgirl", "rimjob", "rimming", "rosypalm", "sadism", "scat", "schlong", "semen", 
       "sex", "shemale", "shibari", "shit", "shota", "slut", "smut", "snatch", "sodom", "spic", "splooge", "spooge", "spunk",
        "strap", "strip", "doggy", "suck", "sucks", "swastika", "swinger", "threesome", "throating", "tit", "topless", "tosser", 
-       "tranny", "tubgirl", "tushy", "twat", "twink", "undressing", "upskirt", "vagina", "vibr", "vore", "voyeur", "vulva", 
-       "wank", "wet", "xx", "yaoi", "zoophil"
+       "tranny", "tubgirl", "tushy", "twat", "twink", "undressing", "upskirt", "vagina", "vibr", "vore", "voyeur", "vulva", "trump",
+       "wank", "wet", "xx", "yaoi", "zoophil", "elon", "bezos", "stern"
 
 
 
